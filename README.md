@@ -19,6 +19,14 @@ Install from your <b>Node-RED Manage Palette</b> or using npm:
 ```
 npm install node-red-contrib-ta-cmi
 ```
+## Example
+
+All values that configured for datalogging in a X2-Device...
+![grafik](https://github.com/PeterAustria/node-red-contrib-ta-cmi/blob/292d75aa5da785df773777ecadeb805204d5e751/icons/TA16x2.PNG)
+
+...can be monitored in node-red
+![grafik](https://github.com/PeterAustria/node-red-contrib-ta-cmi/blob/292d75aa5da785df773777ecadeb805204d5e751/icons/output.PNG)
+
 ## Important
 
 ### Resposibility
@@ -32,13 +40,6 @@ Dieser Node ist ausdrücklich KEIN Produkt der Firma Technische Alternative RT G
 The program development is currently still in the test phase. The node has been extensively tested on the developer's system, but no information is yet available on how the node behaves in other environments. Please support me by reporting briefly about your experiences at <a href="https://github.com/PeterAustria/node-red-contrib-ta-cmi/issues">Issues on GitHub </a>.
 
 Derzeit befindet sich die Programmentwicklung noch in der Testphase. Der Node wurde ausgiebig am System des Entwicklers getestet, es liegen aber noch keine Informationen vor, wie sich der Node in anderen Umgebungen verhält. Bitte unterstütze mich, indem du kurz über deine Erfahrungen unter <a href="https://github.com/PeterAustria/node-red-contrib-ta-cmi/issues">Issues auf GitHub</a> berichtest.
-
-## Example
-
-All values that configured for datalogging in a X2-Device can be monitored in node-red
-![grafik](https://github.com/PeterAustria/node-red-contrib-ta-cmi/blob/292d75aa5da785df773777ecadeb805204d5e751/icons/TA16x2.PNG)
-![grafik](https://github.com/PeterAustria/node-red-contrib-ta-cmi/blob/292d75aa5da785df773777ecadeb805204d5e751/icons/output.PNG)
-
 
 ## Bugs and feature requests
 
