@@ -1,0 +1,73 @@
+<script type="text/javascript">
+	RED.nodes.registerType('cmi config', {
+		category: 'config',
+		defaults: {
+			description: { 
+				value: "TA C.M.I.", 
+				required: true 
+			},
+			ip: {
+				value: "", 
+				required: true
+			},
+			/*
+			status: { 
+				value: "not tested"
+			},
+			*/
+			interval: { 
+				value: 1, 
+                validate(v){
+                    const n = Number(v);
+                    return RED.validators.number()(v) && ((n > 0) && (n <= 100));
+ 			} }			
+		},
+		credentials: {
+			user: { type: "text" },
+			password: { type: "password" }
+		},
+		label: function () {
+			return this.description || "TA C.M.I.";
+		}
+	});
+</script>
+
+<script type="text/html" data-template-name="cmi config">
+    <div class="form-row">
+        <label for="node-config-input-description"><i class="icon-tag"></i> <span data-i18n="cmi.label.description"></span></label>
+        <input type="text" id="node-config-input-description" style="width: 65%" placeholder="TY C.M.I.">
+    </div>
+	<div class="form-tips"> <span data-i18n="cmi.tips.tip1"></span></div>
+	<div class="Form-row"> &nbsp;</div>
+    <div class="form-row">
+        <label for="node-config-input-ip"><i class="fa fa-globe"></i> <span data-i18n="cmi.label.ip"></span></label>
+        <input type="text" id="node-config-input-ip" style="width: 65%" placeholder="192.168.1.8">
+    </div>
+	<div class="form-row">
+		<label for="node-config-input-user"><i class="fa fa-user"></i> <span data-i18n="cmi.label.usr"></span></label>
+		<input type="text" id="node-config-input-user" style="width: 65%">
+	</div>
+	<div class="form-row">
+		<label for="node-input-password"> <i class="fa fa-lock"></i> <span data-i18n="cmi.label.pwd"></span></label>
+		<input type="password" id="node-config-input-password" style="width: 65%">
+	</div>
+<!--
+	<div class="form-row">
+		<label for="node-input-status"> <i class="fa fa-empire"></i> <span data-i18n="cmi.label.status"></span></label>
+		<input type="text" id="node-config-input-status" style="width: 65%" aria-readonly="true">
+		<a id="config-lookup-btn" class="editor-button red-ui-button" style="width: 35px" disabled><i id="config-lookup-icon" class="fa fa-search"></i></a>
+	</div>
+-->	
+	<div class="form-tips"> <span data-i18n="cmi.tips.tip2"></span></div>
+	<div class="Form-row"> &nbsp;</div>
+	<div class="form-row">
+		<span data-i18n="cmi.label.queryCMI1"></span>
+		<input type="text" id="node-config-input-interval" style="width: 40px">
+		<span data-i18n="cmi.label.queryCMI2"></span>
+	</div>
+	<div class="form-tips"> <span data-i18n="cmi.tips.tip3"></span></div>
+</script>
+
+<script type="text/x-red" data-help-name="cmi config">
+    <p>Configure Network Address of the C.M.I.</p>
+</script>

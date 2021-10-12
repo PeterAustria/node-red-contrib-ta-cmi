@@ -1,0 +1,89 @@
+<script type="text/javascript">
+    RED.nodes.registerType('cmi in', {
+        category: 'network',
+        //color: '#FFAAAA',
+        //color: '#0669B2', TA blue
+        color: '#5AA5D5',
+        defaults: {
+            cmi: { 
+                value: "", 
+                type: "cmi config" 
+            },
+            name: { 
+                value: "", 
+                required: true
+            },
+            item: {
+                type: 'text',
+                value: '',
+                required: true,
+                validate(v){
+                    const n = Number(v);
+                    return RED.validators.number()(v) && ((n > 0) && (n <= 64));
+                }
+            },
+            source: { 
+                value: '1', 
+                required: true 
+            },
+            timestamp: { 
+                value: '2', 
+                required: false 
+            }
+        },
+        inputs: 0,
+        outputs: 1,
+        //icon: "font-awesome/fa-thermometer-three-quarters",
+        icon: "ta2.png",
+        label: function () {
+            return this.name || "cmi in";
+        },
+        labelStyle: function () {
+            return this.name ? "node_label_italic" : "";
+        },
+        align: 'left',
+        outputLabels: "msg.-object with the data read from C.M.I.",
+
+    });
+</script>
+
+<script type="text/html" data-template-name="cmi in">
+    <div class="form-row">
+        <label for="node-input-cmi"><i class="fa fa-cog"></i> <span data-i18n="cmi.label.cmi"></label>
+        <input type="text" id="node-input-cmi">
+    </div>
+	<div class="form-tips"> <span data-i18n="cmi.tips.tip1"></span></div>
+	<div class="form-row"> &nbsp;</div>
+	<div class="form-row">
+		<label for="node-input-source"><i class="fa fa-sign-out"></i> <span data-i18n="cmi.label.source"></span></label>
+		<select id="node-input-source">
+			<option value='0'>Datalogging Analog</option>
+			<option value='1'>Datalogging Digital</option>
+		</select>
+	</div>
+    <div class="form-row">
+		<label for="node-input-item"><i class="fa fa-indent"></i> <span data-i18n="cmi.label.item"></label>
+		<input type="text" id="node-input-item" style="width: 40px;">
+	</div>
+	<div class="form-tips"> <span data-i18n="cmi.tips.tip2"></span></div>
+	<div class="form-row"> &nbsp;</div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="cmi.label.name"></span></label>
+        <input type="text" id="node-input-name" data-i18n="[placeholder]node-red:common.label.name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-timestamp"><i class="fa fa-calendar "></i> <span data-i18n="cmi.label.uiShows"></label>
+		<select id="node-input-timestamp">
+            <option value='0'>Value and unit only</option>
+            <option value='1'>Value, Unit and Time</option>
+            <option value='2'>Value, Unit, Data and Time</option>
+        </select>
+        <span> below the node</span>
+    </div>
+	<div class="form-tips"> <span data-i18n="cmi.tips.tip3"></span></div>
+	<div class="form-row"> &nbsp;</div>
+</script>
+
+<script type="text/x-red" data-help-name="cmi in">
+    <p>Read values from TAs C.M.I.</p>
+</script>

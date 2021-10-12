@@ -1,0 +1,30 @@
+{
+    "cmi": {
+        "logging": {
+            "newDataArrived": "*DE*new Data arrived at node ",
+            "httpError": "*DE*HTTP call to CMI was not successful: "
+        },
+        "status": {
+            "waiting": "*DE*waiting for data to arrive",
+            "wrongConfiguration": "*DE*Node not properly configured",
+            "cmiError4": "*DE*Too many requests to C.M.I. (max 1 per min)",
+            "cmiError": "*DE*C.M.I. Error (see flow editor debug tab for more details)",
+            "httpErrorUser": "*DE*Wrong username or password",
+            "httpErrorHost": "*DE*Wrong hostname / IP or C.M.I. not reachable",
+            "httpError": "*DE*Generic error connecting to C.M.I.",
+            "GCSError": "*DE*No live data requested but data in global context store not found"
+        },
+        "label": {
+            "cmi": "DE-C.M.I.",
+            "uiShows": "DE-UI shows",
+            "item": "DE-Item Num.",
+            "source": "DE-Source",
+            "name": "DE-Name"
+        },
+        "tips": {
+            "tip1": "DE-Every C.M.I. in the network you want to get data from, must be configered once. You can use this later in many 'emit in'-nodes to get differnent values. Just select above the same C.M.I. for the other 'emit in'-nodes.",
+            "tip2": "DE-Enter here the number of the item for which you want to get the value. TAs datalogging supports 64 elements (item 1-64) for each kind of source. The possible numbers depend on the configuration of your X2 Device.",
+            "tip3": "DE-Tip: Assign a meaningful 'Name' to the node. This name will be displayed in the UI as the node name and it will also be used as the msg.topic in the output message of the node. Note: Because TA is not transmitting the name of the field, you need to enter this description here manually."
+        }
+    }
+}
