@@ -35,12 +35,15 @@ npm install node-red-contrib-ta-cmi
 
 ### One time Settings
 In the "Edit cmi node" properties page klick the litte pencil icon and node-red will show up the "Add new cmi config config node". Here you fill in the requested information as follow:
+
 ![config-node](./images/config.PNG)
+
 **Note:** For each C.M.I. in your network you have to do this only once.
 When done, plase click the "Add" button and node-red will return you to the "Edit cmi in node".
 
 ### Settings for each node
 You can place as many cmi-in nodes in your flows as you linke. From the dropdown select the same C.M.I. for each node (e.g. "TA C.M.I.").
+
 ![get-node](./images/get.PNG)
 
 
