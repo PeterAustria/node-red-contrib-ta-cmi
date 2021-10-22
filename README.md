@@ -35,13 +35,13 @@ npm install node-red-contrib-ta-cmi
 
 ### One time Settings
 In the "Edit cmi node" properties page klick the litte pencil icon and node-red will show up the "Add new cmi config config node". Here you fill in the requested information as follow:
-![config-node](images/config.png)
+![config-node](./images/config.PNG)
 **Note:** For each C.M.I. in your network you have to do this only once.
 When done, plase click the "Add" button and node-red will return you to the "Edit cmi in node".
 
 ### Settings for each node
 You can place as many cmi-in nodes in your flows as you linke. From the dropdown select the same C.M.I. for each node (e.g. "TA C.M.I.").
-![get-node](images/get.png)
+![get-node](./images/get.PNG)
 
 
 ## What else...
@@ -71,13 +71,13 @@ The program development is currently in the test phase. The node has been extens
 
 ## FAQ
 
-#####Q: After redeploying the node desplays `too many requests to C.M.I. (max 1 per min allowed)`.
+Q: **After redeploying the node desplays `too many requests to C.M.I. (max 1 per min allowed)`.**
 
 A: The C.M.I. allows a maximum of one query per minute. 
 This is a requirement by Technische Alternative RT GmbH and not by the node.
 Through the redeploy, the node is restarted. It immediately tries to access the C.M.I. and read out the latest data. If the last access was not at least 60 seconds ago, this error message is displayed. After the period of time specified in the configuration (at least one minute later), the node again tries to read the data from the C.M.I. Latest now, this should work successfully. If not, please check whether the node is really only configured once. Even if you want to read out multiple values you must configure the C.M.I. only once (click the litte pencil-icon only in the firest node you add). If you re-use the node, just open the dropdown and select the already configured C.M.I. 
 
-#####Q: The user credentials in the configuration of the node are correct, but the node still displays `wrong user or password`.
+Q: **The user credentials in the configuration of the node are correct, but the node still displays `wrong user or password`.**
 
 
 A: You **must** use the credentials of an **"expert"** user. A normal user or guest does not work. 
