@@ -1,0 +1,23 @@
+<<script type="text/x-red" data-help-name="cmi config">
+    <p>For every installed C.M.I. (usually only once) configure here the necessary parameters.</p>
+    <h3>Configuration</h3>
+    <ol class="node-ports">
+        <dl class="message-properties">
+            <dt>Description</dt>
+            <dd>Use a name that clearly describes the C.M.I. You need every C.M.I. to be created here <b>only once</b>. This means that normally it is sufficient to create a single configuration.</dd>
+            
+            <dt>IP-Address</dt>
+            <dd>You can also use the host name instead of the IP address. If you are using the IP address, it is recommended to use a fixed / static IP address. </dd>
+
+            <dt>Unsername</dt>
+            <dd>Use the account that you entered in the C.M.I. as the user name in 'Settings' - 'Passwords' - 'Expert'. <b>You must use the data from the 'Expert' account.</b> The user or guest account does not work. Please note this is case sensitive!</dd>
+
+            <dt>Password</dt>
+            <dd>Enter the password for the corresponding user.</dd>
+
+            <dt>Abfragintervall</dt>
+            <dd>This polling interval defines how the node will wait between two polls of the C.M.I.
+            <dd><em>The minimum is one minute and is determined by Technische Alternative RT GmbH ist not a restriction by the node.</em></dd>
+        </dl>
+    </ol>
+</script>

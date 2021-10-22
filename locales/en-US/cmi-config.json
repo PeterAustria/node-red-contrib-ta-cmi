@@ -5,18 +5,16 @@
         "status": {
         },
         "label": {
-            "description": "EN-Desctiption",
-            "ip": "EN-IP-Addr.",
-            "usr": "EN-Username",
-            "pwd": "EN-Password",
-            "status": "EN-Status",
+            "description": "Desctiption",
+            "ip": "IP-Address",
+            "usr": "Username",
+            "pwd": "Password",
+            "status": "Status",
             "queryCMI1": "Query C.M.I. every",
             "queryCMI2": "minutes for new Data."
         },
         "tips": {
-            "tip1": "EN-Tip: use a description, that clearly identifies your C.M.I. Usually you only have one C.M.I. in your networtk, so you also have to create only one configuration for it.",
-            "tip2": "EN-Tip: Enter the parameters for connecting to the C.M.I. here. You can either enter the IP-Address of the C.M.I. or its hostname. If you use the IP-Address, please meke sure that the C.M.I. always have the same (static) IP-Address. Username and password are the ones you assigned in tbe C.M.I. device-configruation. Attention: Make sure that the user is classified as an 'Expert' in the C.M.I. When done, press the search button to check that the configuration ist correct and the C.M.I can be connected.",
-            "tip3": "EN-Tip: The polling-interval is the time the node will wait after one poll before doing the next. The minimum polling-intervall is 1 minute. This is a restriction by Technische Alternative and not by the node. Here you define the delay between the one and the next data-poll."
+            "tip1": "You must use the data from the 'Expert' account in case senistive letters. The user or guest account does not work."
         }
     }
 }

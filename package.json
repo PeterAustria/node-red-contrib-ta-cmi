@@ -1,14 +1,25 @@
 {
   "name": "node-red-contrib-ta-cmi",
-  "version": "0.0.1",
-  "private": true,
-  "description": "A node that reads dataloggin-values from a C.M.I. from Technische Alternative RT GmbH.",
+  "version": "0.1.0",
+  "private": false,
+  "description": "A node that reads datalogging-values from a C.M.I. from Technische Alternative RT GmbH.",
   "dependencies": {
     "async": "^2.6.1",
-    "debug": "^4.3.1"
+    "debug": "^4.3.1",
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PeterAustria/node-red-contrib-ta-cmi"
   },
   "main": "cmi-get.js",
-  "author": "Peter Hahn <peter.hahn@zwettl.cc>",
+  "author": {
+    "name": "Peter Hahn",
+    "email": "peter.hahn@zwettl.cc"
+  },
+  "_npmUser": {
+    "name": "peteraustira",
+    "email": "peter.hahn@zwettl.cc"
+  },
   "license": "MIT",
   "node-red": {
     "nodes": {
@@ -16,5 +27,15 @@
       "ta-cmi-config": "cmi-config.js"
     }
   },
-  "keywords": []
+  "bugs": {
+    "url": "https://github.com/PeterAustria/node-red-contrib-ta-cmi/issues"
+  },
+  "keywords": [
+    "node-red",
+    "Technische Alternative",
+    "CMI",
+    "C.M.I.",
+    "Control and Monitoring Interface",
+    "x2"
+  ]
 }

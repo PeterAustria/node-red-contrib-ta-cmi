@@ -1,0 +1,39 @@
+<script type="text/x-red" data-help-name="cmi in">
+    <p>Node um das Control and Monitoring Interface <b>C.M.I.</b> der <b>Technische Alternative RT GmbH, Austria</b> in regelmäßigen Abständen abzufragen und die Ergebnisse am Ausgang bereitzustellen. </p>
+    <h3>Ausgaben</h3>
+        <ol class="node-ports">
+            <dl class="message-properties">
+                <dt>payload <span class="property-type">number</span></dt>
+                <dd>Der Wert des abgefragten Elements.</dd>
+
+                <dt>unit <span class="property-type">string</span></dt>
+                <dd>Die Einheit dieses Wertes.</dd>
+
+                <dt>topic <span class="property-type">string</span></dt>
+                <dd>Die Bezeichnung dieses Wertes, wie er auch der UI als Beschriftung des Nodes angezeigt wird (siehe unten).</dd>
+
+                <dt>timestamp <span class="property-type">time</span></dt>
+                <dd>Zeitstempel des Datenpakets aus dem C.M.I.</dd>
+            </dl>
+        </ol>
+    <h3>Konfiguration</h3>
+    <ol class="node-ports">
+        <dl class="message-properties">
+            <dt>C.M.I</dt>
+            <dd>Jedes C.M.I. von dem Sie Daten auslesen wollen, muss <b>einmal</b> unter einem eindeutigen Namen angelegt werden. Falls das noch nicht geschehen ist, klicken Sie auf den Stift um das zu tun. Für alle weiteren Messwerte die Sie verwenden wollen, wählen Sie in weiterer Folge das bereits angelegte C.M.I. aus.</dd>
+
+            <dt>Quelle</dt>
+            <dd>Wählen Sie aus, ob sie einen der 64 analogen Daten oder einen der 64 digitalen Daten aus dem Datenlogging verwenden möchten.</dd>
+                
+            <dt>Element</dt>
+            <dd>Geben Sie hier die Nummer des gewünschten Elements aus dem Datenlogging ein. Hierbei ist die selbe Nummer zu verwenden, die im Datenlogging des X2 Gerätes für diesen Wert (vor dem Doppelpunkt) angezeigt wird.</dd>
+
+            <dt>Bezeichnung</dt>
+            <dd>Sie können Sie (müssen aber nicht) den gleichen Namen verwenden, wie Sie ihn bei der Definition im X2 Datenlogging gewählt haben. Diese Bezeichnung wird sowohl als Beschriftung des Nodes im UI verwendet, als auch als <code>message.topic</code> am Ausgang des Nodes bereitgestellt.</dd>
+            <dd><em>Es ist leider nicht möglich die Bezeichnung automatisch vom C.M.I. zu übernehmen, da diese nicht in der Schnittstelle vorhanden ist.</em></dd>
+            
+            <dt>UI zeigt...</dt>
+            <dd>Im User Interface (UI) von Node-Red werden unterhalb des Nodes standardmäßig der aktuelle Wert und dessen Einheit angezeigt. Zusätzlich kann noch Datum und/oder Uhrzeit, wann der Wert zuletzt ausgelesen wurde, hinzugefügt werden.</dd>
+        </dl>
+    </ol>
+</script>

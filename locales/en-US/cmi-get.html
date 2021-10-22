@@ -1,0 +1,39 @@
+<script type="text/x-red" data-help-name="cmi in">
+    <p>A node to query the Control and Monitoring Interface <b>C.M.I.</b> of the <b>Technische Alternative RT GmbH, Austria</b> at regular intervals and to provide the received data as the output. </p>
+    <h3>Outputs</h3>
+        <ol class="node-ports">
+            <dl class="message-properties">
+                <dt>payload <span class="property-type">number</span></dt>
+                <dd>The value of the requested Item.</dd>
+
+                <dt>unit <span class="property-type">string</span></dt>
+                <dd>The unit of this item.</dd>
+
+                <dt>topic <span class="property-type">string</span></dt>
+                <dd>The topic as it is also used as the desctiption of the node in the UI (see below).</dd>
+
+                <dt>timestamp <span class="property-type">time</span></dt>
+                <dd>Timestamp generated of the C.M.I. when the data was sent to the node.</dd>
+            </dl>
+        </ol>
+    <h3>Konfiguration</h3>
+    <ol class="node-ports">
+        <dl class="message-properties">
+            <dt>C.M.I</dt>
+            <dd>Every C.M.I. from which you want to read out data must be created once. If you haven't already done, click the pencil to do so. For all other measured values that you want to use, please select the already configured C.M.I.</dd>
+
+            <dt>Source</dt>
+            <dd>Select whether you want to use one of the 64 analog data or one of the 64 digital data from the data logging.</dd>
+                
+            <dt>Element No.</dt>
+            <dd>Enter here the number of the requested Element from datalogging. Use the same number that is displayed for this value (before the colon) in the data logging of the X2 device.</dd>
+            <dd><em>Unfortunately, it is not possible to automatically get the name from the C.M.I. to be adopted, as this is not available in the interface.</em></dd>
+ 
+            <dt>Description</dt>
+            <dd>You can (but do not have to) use the same name as the description you selected when you defined it in X2 data logging. This description is used both as a label for the node in the UI and provided as the <code>message.topic</code> at the node's output.</dd>
+            
+            <dt>UI shows...</dt>
+            <dd>Im User Interface (UI) von Node-Red werden unterhalb des Nodes standardmäßig der aktuelle Wert und dessen Einheit angezeigt. Zusätzlich kann noch Datum und/oder Uhrzeit, wann der Wert zuletzt ausgelesen wurde, hinzugefügt werden.</dd>
+        </dl>
+    </ol>
+    </script>

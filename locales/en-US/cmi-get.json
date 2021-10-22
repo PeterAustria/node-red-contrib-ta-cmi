@@ -1,30 +1,30 @@
 {
     "cmi": {
         "logging": {
-            "newDataArrived": "*EN*new Data arrived at node ",
-            "httpError": "*EN*HTTP call to CMI was not successful: "
+            "newDataArrived": "new Data arrived at node ",
+            "httpError": "call to C.M.I. was not successful: "
         },
         "status": {
-            "waiting": "*EN*waiting for data to arrive",
-            "wrongConfiguration": "*EN*node not properly configured",
-            "cmiError4": "*EN*too many requests to C.M.I. (max 1 per min)",
-            "cmiError": "*EN*C.M.I. Error (see flow editor debug tab for more details)",
-            "httpErrorUser": "*EN*wrong username or password",
-            "httpErrorHost": "*EN*wrong hostname / IP or C.M.I. not reachable",
-            "httpError": "*EN*generic error connecting to C.M.I.",
-            "GCSError": "*EN*no live data requested but data in global context store not found"
+            "waiting": "waiting for data to arrive",
+            "wrongConfiguration": "node not properly configured",
+            "cmiError4": "too many requests to C.M.I. (max 1 per min allowed)",
+            "cmiError": "C.M.I. Error (see flow editor debug tab for more details)",
+            "httpErrorUser": "wrong username or password",
+            "httpErrorHost": "wrong hostname / IP or C.M.I. not reachable",
+            "httpError": "generic error connecting to C.M.I.",
+            "GCSError": "no live data requested but data in global context store not found"
         },
         "label": {
-            "cmi": "EN-C.M.I.",
-            "uiShows": "EN-UI shows",
-            "item": "EN-Item Num.",
-            "source": "EN-Source",
-            "name": "EN-Name"
+            "cmi": "C.M.I.",
+            "uiShows1": "UI shows",
+            "uiShows2": "below the node",
+            "item": "Element No.",
+            "source": "Source",
+            "name": "Description"
         },
         "tips": {
-            "tip1": "EN-Every C.M.I. in the network you want to get data from, must be configered once. You can use this later in many 'emit in'-nodes to get differnent values. Just select above the same C.M.I. for the other 'emit in'-nodes.",
-            "tip2": "EN-Enter here the number of the item for which you want to get the value. TAs datalogging supports 64 elements (item 1-64) for each kind of source. The possible numbers depend on the configuration of your X2 Device.",
-            "tip3": "EN-Tip: Assign a meaningful 'Name' to the node. This name will be displayed in the UI as the node name and it will also be used as the msg.topic in the output message of the node. Note: Because TA is not transmitting the name of the field, you need to enter this description here manually."
+            "tip1": "Every C.M.I. from which you want to read out data must be created only once.",
+            "tip2": "You can (but do not have to) use the same name as the description you selected when you defined it in X2 data logging."
         }
     }
 }

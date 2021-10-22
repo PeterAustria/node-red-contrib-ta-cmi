@@ -102,3 +102,14 @@ dist
 
 # TernJS port file
 .tern-port
+workspace.code-workspace
+icons/icon.psd
+icons/readme.docx
+icons/cmi-config.PNG
+icons/Chart.PNG
+icons/cmi-get.PNG
+icons/cmi-in.PNG
+icons/TA-DL.PNG
+icons/TA-Ethernet.PNG
+icons/TA-Passwords.PNG
+icons/UI.PNG
