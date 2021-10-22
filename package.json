@@ -5,7 +5,7 @@
   "description": "A node that reads datalogging-values from a C.M.I. from Technische Alternative RT GmbH.",
   "dependencies": {
     "async": "^2.6.1",
-    "debug": "^4.3.1",
+    "debug": "^4.3.1"
   },
   "repository": {
     "type": "git",
