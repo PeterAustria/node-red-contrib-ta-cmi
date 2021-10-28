@@ -20,7 +20,18 @@
             "uiShows2": "unterhalb des Nodes",
             "item": "Element Nr.",
             "source": "Quelle",
-            "name": "Bezeichnung"
+            "name": "Bezeichnung",
+            "skip": "Überspringe",
+            "severity": "Schärfe",
+            "skip1": "Ausgaben, wenn der Wert unverändert ist",
+            "severity1": "wobei",
+            "severity2": "Prozent Abweichung toleriert werden,",
+            "severity3": "damit ein Wert als unverändert betrachtet wird.",
+
+            "temp1": "Überspringe maximal",
+            "temp2": "Werte, wenn die Abweichung vom letzten",
+            "temp3": "ausgegeben Wert weniger als",
+            "temp4": "Prozent beträgt."
         },
         "tips": {
             "tip1": "Jedes C.M.I. von dem Sie Daten auslesen wollen, muss nur einmal angelegt werden.",

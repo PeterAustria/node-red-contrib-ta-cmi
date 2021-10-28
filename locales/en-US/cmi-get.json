@@ -20,7 +20,17 @@
             "uiShows2": "below the node",
             "item": "Element No.",
             "source": "Source",
-            "name": "Description"
+            "name": "Description",
+            "skip": "Skip",
+            "severity": "Severity",
+            "skip1": "Outputs, if the value hasn't changed",
+            "severity1": "whereby",
+            "severity2": "percent deviation is tolerated, so", 
+            "severity3": "that a value is not considered to have changed.",
+            "temp1": "Skip a maximum of",
+            "temp2": "values if the deviation from the last",
+            "temp3": "output value is less than",
+            "temp4": "percent."
         },
         "tips": {
             "tip1": "Every C.M.I. from which you want to read out data must be created only once.",

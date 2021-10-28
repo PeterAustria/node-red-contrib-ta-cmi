@@ -42,7 +42,7 @@ module.exports = function (RED) {
 
 	function cmiGetNode(config) {
 
-		// Run this code on initialisation of the node (startup, deploay)
+		// Run this code on initialisation of the node (startup, deploy)
 
 		if (debug) { console.log(nodeName + 'Init start') }
 
@@ -50,6 +50,7 @@ module.exports = function (RED) {
 
 		// Retrieve the values of this node
 		//this.name = config.name;
+	
 		if (debugDetailed) { console.log(nodeName + '>>> name: ' + node.name) }
 
 		// Retrieve the values of config node in this node
@@ -59,6 +60,8 @@ module.exports = function (RED) {
 
 		//save all (local node and config node) into node{}
 		var node = this;
+		node.lastValue = -99999.9;
+		node.skipped = -1;
 
 		//clear node.status
 		node.status({ fill: "yellow", shape: "dot", text: "cmi.status.waiting" });
@@ -72,7 +75,7 @@ module.exports = function (RED) {
 			// start checking Answer and show status in the node.status
 			if (msg.httpStatusCode == 200) { // http connect sucessful
 				if (msg.data["Status code"] == 0) { // cmi answer OK
-					try { // check if all indexes are in the right range a.w.o.
+					try { // check if all indexes are in the right range a.s.o.
 						let newmsg = {};
 						let statustext = '';
 						newmsg.payload = msg.data.Data[cmiSecitons[config.source]][config.item - 1].Value.Value; // "item -1": CMI starts counting with 1, JS starts with 0 
@@ -82,7 +85,7 @@ module.exports = function (RED) {
 						if (config.source == 1) { // Datalogging Digital -> Replace Topic with single word ("AUS/EIN" -> "AUS" or "EIN")
 							let part = newmsg.unit.split('/');
 							newmsg.unit = part[newmsg.payload];
-							newmsg.part = part;
+//							newmsg.part = part;
 						}
 						statustext = newmsg.payload + ' ' + newmsg.unit;
 						switch (config.timestamp) {
@@ -95,8 +98,31 @@ module.exports = function (RED) {
 								statustext += ' (' + dateTime(newmsg.timestamp * 1000, true) + ')';
 								break;
 						};
+						let newValue = parseFloat(newmsg.payload);
+						let skip = parseInt(config.skip);
+						let severity = parseInt(config.severity);
+						let varianz = newValue * severity / 100;
+						if (debugDetailed) {	
+							console.log(nodeName + '[' + config.name + '] New Value          : ' + newValue + '('+typeof(newValue)+')');
+							console.log(nodeName + '[' + config.name + '] Old Value          : ' + node.lastValue + '('+typeof(node.lastValue)+')');
+							console.log(nodeName + '[' + config.name + '] Skipped            : ' + node.skipped + '('+typeof(node.skipped)+')');
+							console.log(nodeName + '[' + config.name + '] Skip               : ' + skip + '('+typeof(skip)+')');
+							console.log(nodeName + '[' + config.name + '] Severity           : ' + severity + '('+typeof(severity)+')');
+							console.log(nodeName + '[' + config.name + '] Varianz            : ' + varianz + '('+typeof(varianz)+')');
+							console.log(nodeName + '[' + config.name + '] Inverval high      : ' + (newValue+varianz));
+							console.log(nodeName + '[' + config.name + '] Inverval low       : ' + (newValue-varianz));
+						}
+						if ((newValue + varianz >= node.lastValue) && (newValue - varianz <= node.lastValue) && (node.skipped < skip)) {
+							node.skipped ++;
+							if (debug) { node.log(nodeName + '[' + config.name +'[ Skipped: last value ' + node.lastValue + ' | actual value ' + newValue + ' (+/- ' + varianz +') for ' + node.skipped + ' Times now.') };
+							statustext += ' [skipped: ' + node.skipped +']';
+						}
+						else {
+							node.send(newmsg);
+							node.skipped = 0;
+							node.lastValue = newValue;
+						}
 						node.status({ fill: "green", shape: "dot", text: statustext });
-						node.send(newmsg);
 					} catch (err) {
 						node.status({ fill: "red", shape: "dot", text: "cmi.status.wrongConfiguration" });
 						node.warn('HTTP call and Answer from CMI successful but Node not configured correctly. : ' + err.message);
@@ -143,6 +169,8 @@ module.exports = function (RED) {
 				console.log(nodeName + '[' + config.name + '] Source             : ' + config.source);
 				console.log(nodeName + '[' + config.name + '] Name               : ' + config.name);
 				console.log(nodeName + '[' + config.name + '] Timestamp          : ' + config.timestamp);
+				console.log(nodeName + '[' + config.name + '] Skip               : ' + config.skip);
+				console.log(nodeName + '[' + config.name + '] Severity           : ' + config.severity);
 				console.log(nodeName + config.name + ': ' + msg.data.Data["Logging Analog"][config.item].Value.Value + ' ' + cmiUnits[msg.data.Data["Logging Analog"][config.item].Value.Unit]);
 			}
 		});

@@ -34,6 +34,13 @@
             
             <dt>UI zeigt...</dt>
             <dd>Im User Interface (UI) von Node-Red werden unterhalb des Nodes standardmäßig der aktuelle Wert und dessen Einheit angezeigt. Zusätzlich kann noch Datum und/oder Uhrzeit, wann der Wert zuletzt ausgelesen wurde, hinzugefügt werden.</dd>
+
+            <dt>Überspringe</dt>
+            <dd>Aus Performance-Gründen kann es sinnvoll sein, die Anzahl der ausgelesenen Werte zu reduzieren. Mit dieser Einstellung ist es möglich, sich wiederholende Werte nicht jedes Mal auszugeben sondern erst nach x Wiederholungen des gleichen Wertes aber sofort bei einer Änderung des Wertes. </dd>
+            <dd>Dies kann zum Beispiel sinnvoll sein, wenn sie die Werte in einem Chart-Node anzeigen lassen wollen. Denn eine sehr hohe Anzahl an Werten in einem Chart-Node reduziert die Performance erheblich.</dd>
+            <dd>Wenn es sich bei dem Wert um einen analogen Wert handelt, kann zusätzlich noche eine Toleranz in Prozent eingestellt werden, innerhalb der ein Wert trotz einer (geringen) Abweichung als identisch behandelt und somit nicht ausgegben wird.</dd>
+        
+            <dt>
         </dl>
     </ol>
 </script>

@@ -29,11 +29,28 @@
             timestamp: { 
                 value: '2', 
                 required: false 
+            },
+            skip: {
+                type: 'text',
+                value: '0',
+                required: false,
+                validate(v){
+                    const n = Number(v);
+                    return RED.validators.number()(v) && ((n >= 0) && (n <= 99));
+                }
+            },
+            severity: {
+                type: 'text',
+                value: '0',
+                required: false,
+                validate(v){
+                    const n = Number(v);
+                    return RED.validators.number()(v) && ((n >=0) && (n <= 99));
+                }
             }
         },
         inputs: 0,
         outputs: 1,
-        //icon: "font-awesome/fa-thermometer-three-quarters",
         icon: "icon.png",
         label: function () {
             return this.name || "cmi in";
@@ -43,7 +60,17 @@
         },
         align: 'left',
         outputLabels: "msg.-object with the data read from C.M.I.",
+        oneditprepare: function() {
+            $("#node-input-source").change(function() {
+                if ($(this).val() != 0) { // show severity input lines only for Datalogging Analog and set value to '0' if not analog
+                    $(".severity-row").hide();
+                    $("#node-input-severity").val('0');
+                } else { 
+                    $(".severity-row").show(); 
+                }
+            })
 
+        }
     });
 </script>
 
@@ -63,7 +90,7 @@
 	</div>
     <div class="form-row">
 		<label for="node-input-item"><i class="fa fa-indent"></i> <span data-i18n="cmi.label.item"></label>
-		<input type="text" id="node-input-item" style="width: 40px;">
+		<input type="number" id="node-input-item" min="1" max ="64" step = "any" placeholder="1" style="width: 60px;">
 	</div>
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="cmi.label.name"></span></label>
@@ -81,4 +108,20 @@
 		<span data-i18n="cmi.label.uiShows2"></span>
     </div>
 	<div class="form-row"> &nbsp;</div>
+    <div class="form-row">
+        <label for="node-input-skip"><i class="fa fa-forward"></i> <span data-i18n="cmi.label.skip"></label>
+        <input type="number" id="node-input-skip" min="0" max ="20" step = "any" placeholder="0" style="width: 60px;">
+		<span data-i18n="cmi.label.skip1"></span>
+	</div>
+    <div class="form-row severity-row">
+        <label for="node-input-severity"></label>
+        <span data-i18n="cmi.label.severity1"></span>
+        <input type="number" id="node-input-severity" min="0" max ="99" step = "any" placeholder="1" style="width: 60px;">
+		<span data-i18n="cmi.label.severity2"></span>
+        <input id="node-input-severity" type="hidden">
+	</div>
+    <div class="form-row severity-row">
+        <label for="node-input-severity"></label>
+		<span data-i18n="cmi.label.severity3"></span>
+	</div>
 </script>

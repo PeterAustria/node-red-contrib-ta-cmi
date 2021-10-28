@@ -182,7 +182,7 @@ module.exports = function (RED) {
 			let repeat = config.interval;
 			if (repeat && !isNaN(repeat) && repeat > 0) {
 				repeat = repeat * 1000 * 60; // in milliseconds
-				repeat = repeat / 2; // overwrite setting in UI for quicker testing results - remove lager!!!
+//				repeat = repeat / 2; // overwrite setting in UI for quicker testing results - remove later!!!
 				if (debug) { console.log(nodeName + "starting repeater setup with interval " + repeat + " ms") };
 				this.repeaterID = setInterval(function () {
 					// This code is executed repeated

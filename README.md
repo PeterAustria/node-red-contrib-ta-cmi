@@ -1,7 +1,6 @@
 [![platform](https://img.shields.io/badge/platform-Node--RED-red)](https://nodered.org)
 [![npm](https://img.shields.io/npm/v/node-red-contrib-ta-cmi.svg)](https://www.npmjs.com/package/node-red-contrib-ta-cmi)
-[![Current Release](https://img.shields.io/github/v/release/peteraustria/node-red-contrib-ta-cmi.svg?colorB=4cc61e)](https://github.com/peteraustria/node-red-contrib-ta-cmi/releases/latest)
-[![downloads](https://img.shields.io/npm/dt/node-red-contrib-ta-cmi.svg)](https://www.npmjs.com/package/node-red-ta-cmi)
+[![downloads](https://img.shields.io/npm/dt/node-red-contrib-ta-cmi.svg)](https://www.npmjs.com/package/node-red-contrib-ta-cmi)
 [![GitHub last commit](https://img.shields.io/github/last-commit/peteraustria/node-red-contrib-ta-cmi)](https://github.com/peteraustria/node-red-contrib-ta-cmi/commits/master)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/vivereSmartGroup/node-red-contrib-ta-cmi/master/LICENSE)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?logo=paypal)](https://www.paypal.com/donate?business=RXENQEUPYFL2Y&no_recurring=1&currency_code=EUR)
@@ -9,7 +8,7 @@
 # node-red-contrib-ta-cmi
 
 ![Logo](images/logo.png)
-The <B>C</b>ontrol and <b>M</b>onitoring <b>I</b>nterface (<b>C.M.I.</b>) is an interface for convenient system monitoring, remote control and data loggingof all controllers with DL or CAN bus form <a href = "https://www.ta.co.at/en/"> Technischen Alternative RT GmbH, Austria</a>.</p>
+The **C**ontrol and **M**onitoring **I**nterface (**C.M.I.**) is an interface for convenient system monitoring, remote control and data loggingof all controllers with DL or CAN bus form <a href = "https://www.ta.co.at/en/"> Technischen Alternative RT GmbH, Austria</a>.</p>
 <p>This node can be configured to query the <a href="https://www.ta.co.at/en/x2-operation-interfaces/cmi/">  <b>C.M.I.</b></a> at configurable intervals and provide any value at its output. So it is easy to access, display and visualize Data that is coming from e.g. the <a href="https://www.ta.co.at/en/x2-freely-programmable-controllers/uvr16x2/"> UVR16x2 programmable universal controler</a> with node-red.
 
 
@@ -46,31 +45,31 @@ You can place as many cmi-in nodes in your flows as you linke. From the dropdown
 
 ![get-node](./images/get.PNG)
 
+Since version 0.1.2 of the node you can additionally configure that the node skips a number of duplicate values to reduce the number of data. For analog data you can also configure a tolerance in percent within which a value is treated as identical despite a (small) deviation and is therefore not output.
 
 ## What else...
 
 ### Resposibility
 
-This node was developed by me privately, in my spare time and it is expressly <b>NOT a product of Technische Alternative RT GmbH</b>, but my own, private development. The company Technische Alternative RT GmbH is therefore neither responsible for the function nor for the support of this node. The author provides the code for free on GitHub "as it is" and also assumes no liability for any inconvenience or damage that may 
-result from its use.
+This node was developed by me privately, in my spare time and it is expressly **NOT a product of Technische Alternative RT GmbH**, but my own, private development. The company Technische Alternative RT GmbH is therefore neither responsible for the function nor for the support of this node. The author provides the code for free on GitHub "as it is" and also assumes no liability for any inconvenience or damage that may 
+result from its use. 
 
-If you like it, I would appreciate a small donation. Just click here:
-<form action="https://www.paypal.com/donate" method="post" target="_top">
-<input type="hidden" name="business" value="RXENQEUPYFL2Y" />
-<input type="hidden" name="no_recurring" value="1" />
-<input type="hidden" name="currency_code" value="EUR" />
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-<img alt="" border="0" src="https://www.paypal.com/en_AT/i/scr/pixel.gif" width="1" height="1" />
-</form>
+If you like this node and you want it to be supported and improved in future, you could buy me a drink to motivate me to continue adding new features in the future and to maintain the program.
 
+[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/donate?business=RXENQEUPYFL2Y&no_recurring=1&currency_code=EUR "Thank you!")
 
 ### BETA stage
 
 The program development is currently in the test phase. The node has been extensively tested on my system, and it works with the hardware and configuration I'using. Currently, I do not have any information on how the node behaves in other environments. Please support me by reporting briefly about your experiences at <a href="https://github.com/PeterAustria/node-red-contrib-ta-cmi/issues">Issues on GitHub</a>.
 
-### Changelog
+## Changelog
 
-0.1.0 Initial version 2021-10-22
+### 0.1.0 Initial version 2021-10-22
+### 0.1.1 Minor changes in dokumentation 2021-10-22
+### 0.1.2 New features added and bugs removed 2021-10-28
+- **Feature added to skip duplicate values.** It is now possible not to output repetitive values ​​every time, but only after x repetitions of the same value, but immediately when the value is changed. This can be useful, for example, if you want to display the values ​​in a chart node. Because a very high number of values ​​in a chart node significantly reduces performance. If the value is an analog value, you can also set a tolerance in percent within which a value is treated as identical despite a (small) deviation and is therefore not output.
+- **Corrected request time.** In the initial realease the node requested data from the C.M.I. twice as often as configured.
+- **removed 'part'** in the message object of digital logging data.
 
 ## FAQ
 
