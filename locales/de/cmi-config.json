@@ -6,7 +6,7 @@
         },
         "label": {
             "description": "Bezeichnung",
-            "ip": "IP-Addresse",
+            "ip": "IP-Adresse",
             "usr": "Benutzer",
             "pwd": "Passwort",
             "status": "Status",

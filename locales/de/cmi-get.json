@@ -6,13 +6,13 @@
         },
         "status": {
             "waiting": "warte auf Daten vom C.M.I.",
-            "wrongConfiguration": "der Node wurde nicht richtig kofiguriert",
+            "wrongConfiguration": "der Node wurde nicht richtig konfiguriert",
             "cmiError4": "zu häufige Abfrage des C.M.I. (max. 1 pro Min. erlaubt)",
             "cmiError": "Fehler im C.M.I. (siehe 'flow editor debug tab' für Details)",
             "httpErrorUser": "falscher Benutzer oder Passwort",
             "httpErrorHost": "falsche IP/Hostname oder C.M.I. nicht erreichbar",
             "httpError": "allgemeiner Fehler beim Verbinden zum C.M.I.",
-            "GCSError": "no live data requested but data in global context store not found"
+            "GCSError": "keine Live-Daten angefordert, aber Daten im globalen Kontext-Store nicht gefunden"
         },
         "label": {
             "cmi": "C.M.I.",

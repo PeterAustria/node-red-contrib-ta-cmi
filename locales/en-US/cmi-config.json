@@ -5,7 +5,7 @@
         "status": {
         },
         "label": {
-            "description": "Desctiption",
+            "description": "Description",
             "ip": "IP-Address",
             "usr": "Username",
             "pwd": "Password",
@@ -14,7 +14,7 @@
             "queryCMI2": "minutes for new Data."
         },
         "tips": {
-            "tip1": "You must use the data from the 'Expert' account in case senistive letters. The user or guest account does not work."
+            "tip1": "You must use the data from the 'Expert' account in case sensitive letters. The user or guest account does not work."
         }
     }
 }

@@ -10,13 +10,13 @@
                 <dd>The unit of this item.</dd>
 
                 <dt>topic <span class="property-type">string</span></dt>
-                <dd>The topic as it is also used as the desctiption of the node in the UI (see below).</dd>
+                <dd>The topic as it is also used as the title of the node in the UI (see below).</dd>
 
                 <dt>timestamp <span class="property-type">time</span></dt>
                 <dd>Timestamp generated of the C.M.I. when the data was sent to the node.</dd>
             </dl>
         </ol>
-    <h3>Konfiguration</h3>
+    <h3>Configuration</h3>
     <ol class="node-ports">
         <dl class="message-properties">
             <dt>C.M.I</dt>
@@ -30,11 +30,11 @@
             <dd><em>Unfortunately, it is not possible to automatically get the name from the C.M.I. to be adopted, as this is not available in the interface.</em></dd>
  
             <dt>Description</dt>
-            <dd>You can (but do not have to) use the same name as the description you selected when you defined it in X2 data logging. This description is used both as a label for the node in the UI and provided as the <code>message.topic</code> at the node's output.</dd>
+            <dd>You can (but do not have to) use the same name as the description you selected when you defined it in X2 device for data logging. This description is used both as a label for the node in the UI and provided as the <code>message.topic</code> at the node's output.</dd>
             
             <dt>UI shows...</dt>
-            <dd>Im User Interface (UI) von Node-Red werden unterhalb des Nodes standardmäßig der aktuelle Wert und dessen Einheit angezeigt. Zusätzlich kann noch Datum und/oder Uhrzeit, wann der Wert zuletzt ausgelesen wurde, hinzugefügt werden.</dd>
-
+            <dd>In the user interface (UI) of Node-Red, the current value and its unit are displayed below the node by default. In addition, the date and/or the time, when the value was last read from C.M.I., can be added.
+   
             <dt>Skip</dt>
             <dd>For performance reasons, it can make sense to reduce the number of values ​​read out. With this setting it is possible not to output repetitive values ​​every time, but only after x repetitions of the same value, but immediately when the value is changed.</dd>
             <dd>This can be useful, for example, if you want to display the values ​​in a chart node. Because a very high number of values ​​in a chart node significantly reduces performance.</dd>

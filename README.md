@@ -8,8 +8,9 @@
 # node-red-contrib-ta-cmi
 
 ![Logo](images/logo.png)
-The **C**ontrol and **M**onitoring **I**nterface (**C.M.I.**) is an interface for convenient system monitoring, remote control and data loggingof all controllers with DL or CAN bus form <a href = "https://www.ta.co.at/en/"> Technischen Alternative RT GmbH, Austria</a>.</p>
-<p>This node can be configured to query the <a href="https://www.ta.co.at/en/x2-operation-interfaces/cmi/">  <b>C.M.I.</b></a> at configurable intervals and provide any value at its output. So it is easy to access, display and visualize Data that is coming from e.g. the <a href="https://www.ta.co.at/en/x2-freely-programmable-controllers/uvr16x2/"> UVR16x2 programmable universal controler</a> with node-red.
+The **C**ontrol and **M**onitoring **I**nterface (**C.M.I.**) is an interface for convenient system monitoring, remote control and data logging of all controllers with DL or CAN bus form [Technische Alternative RT GmbH, Austria]("https://www.ta.co.at/en/" "Webpage of Technische Alternative RT GmbH").
+
+This node can be configured to query the [C.M.I.]("https://www.ta.co.at/en/x2-operation-interfaces/cmi/" "C.M.I. product page") at configurable intervals and provide any value at its output. So it is easy to access, display and visualize Data that is coming from e.g. the [UVR16x2 programmable universal controler]("https://www.ta.co.at/en/x2-freely-programmable-controllers/uvr16x2/" "UVR16x2 product page")> UVR16x2 programmable universal controler</a> with node-red.
 
 
 ## Quick Start
@@ -20,9 +21,9 @@ npm install node-red-contrib-ta-cmi
 ```
 ## Example
 
-![Example](images/demo1.png)
+![Example](images/demo1.png "Example how the output of the node can be used in the dashboard of node-red")
 
-![Example](images/demo2.png)
+![Example](images/demo2.png "How to 'wire' the nodes in the Example above")
 
 
 ```
@@ -32,8 +33,8 @@ npm install node-red-contrib-ta-cmi
 
 ## Configuration
 
-### One time Settings
-In the "Edit cmi node" properties page klick the litte pencil icon and node-red will show up the "Add new cmi config config node". Here you fill in the requested information as follow:
+### One-time Settings
+In the "Edit cmi node" properties page klick the little pencil icon and node-red will show up the "Add new cmi config config node". Here you fill in the requested information as follow:
 
 ![config-node](./images/config.PNG)
 
@@ -41,15 +42,15 @@ In the "Edit cmi node" properties page klick the litte pencil icon and node-red 
 When done, plase click the "Add" button and node-red will return you to the "Edit cmi in node".
 
 ### Settings for each node
-You can place as many cmi-in nodes in your flows as you linke. From the dropdown select the same C.M.I. for each node (e.g. "TA C.M.I.").
+You can place as many cmi-in nodes in your flows as you like. From the dropdown select the same C.M.I. for each node (e.g. "TA C.M.I.").
 
 ![get-node](./images/get.PNG)
 
-Since version 0.1.2 of the node you can additionally configure that the node skips a number of duplicate values to reduce the number of data. For analog data you can also configure a tolerance in percent within which a value is treated as identical despite a (small) deviation and is therefore not output.
+Since version 0.1.2 of the node, you can additionally configure that the node skips a number of duplicate values to reduce the amount of data. For analog data you can also configure a tolerance in percent within which a value is treated as identical despite a (small) deviation and is therefore not output.
 
 ## What else...
 
-### Resposibility
+### Responsibility
 
 This node was developed by me privately, in my spare time and it is expressly **NOT a product of Technische Alternative RT GmbH**, but my own, private development. The company Technische Alternative RT GmbH is therefore neither responsible for the function nor for the support of this node. The author provides the code for free on GitHub "as it is" and also assumes no liability for any inconvenience or damage that may 
 result from its use. 
@@ -60,31 +61,41 @@ If you like this node and you want it to be supported and improved in future, yo
 
 ### BETA stage
 
-The program development is currently in the test phase. The node has been extensively tested on my system, and it works with the hardware and configuration I'using. Currently, I do not have any information on how the node behaves in other environments. Please support me by reporting briefly about your experiences at <a href="https://github.com/PeterAustria/node-red-contrib-ta-cmi/issues">Issues on GitHub</a>.
+The program development is currently in the test phase. The node has been extensively tested on my system, and it works with the hardware and configuration I am using. Currently, I do not have any information on how the node behaves in other environments. Please support me by reporting briefly about your experiences at <a href="https://github.com/PeterAustria/node-red-contrib-ta-cmi/issues">Issues on GitHub</a>.
 
 ## Changelog
 
 ### 0.1.0 Initial version 2021-10-22
-### 0.1.1 Minor changes in dokumentation 2021-10-22
-### 0.1.2 New features added and bugs removed 2021-10-28
+### 0.1.1 Minor changes in documentation 2021-10-22
+### 0.1.2 New features added, and bugs removed 2021-10-28
 - **Feature added to skip duplicate values.** It is now possible not to output repetitive values ​​every time, but only after x repetitions of the same value, but immediately when the value is changed. This can be useful, for example, if you want to display the values ​​in a chart node. Because a very high number of values ​​in a chart node significantly reduces performance. If the value is an analog value, you can also set a tolerance in percent within which a value is treated as identical despite a (small) deviation and is therefore not output.
-- **Corrected request time.** In the initial realease the node requested data from the C.M.I. twice as often as configured.
+- **Corrected request time.** In the initial release the node requested data from the C.M.I. twice as often as configured.
 - **removed 'part'** in the message object of digital logging data.
+- **added up/down buttons** for numeric inputs.
+### 0.1.3 Minor changes 2021-10-29
+- Some **spelling mistakes** corrected in the dialogs and also in the help texts.
+- For new nodes, the **default value for 'UI shows ... below the node'** set to **'Value and unit only'** as specified in the documentation.
+- For new nodes, the **default value for 'Source'** is changed to **'Datalogging Analog'**; this setting is usually used more often.
+- Revoved **"debug": "^4.3.1"** as a dependency for the node.
 
 ## FAQ
 
-Q: **After redeploying the node desplays `too many requests to C.M.I. (max 1 per min allowed)`.**
+**After redeploying, the node desplays `too many requests to C.M.I. (max 1 per min allowed)`.**
 
-A: The C.M.I. allows a maximum of one query per minute. 
-This is a requirement by Technische Alternative RT GmbH and not by the node.
-Through the redeploy, the node is restarted. It immediately tries to access the C.M.I. and read out the latest data. If the last access was not at least 60 seconds ago, this error message is displayed. After the period of time specified in the configuration (at least one minute later), the node again tries to read the data from the C.M.I. Latest now, this should work successfully. If not, please check whether the node is really only configured once. Even if you want to read out multiple values you must configure the C.M.I. only once (click the litte pencil-icon only in the firest node you add). If you re-use the node, just open the dropdown and select the already configured C.M.I. 
+>The C.M.I. allows a maximum of one query per minute. This is a requirement by Technische Alternative RT GmbH and not by the node.
+>
+>Through the redeploy, the node is restarted. It immediately tries to access the C.M.I. and read out the latest data. If the last access was not at least 60 seconds ago, this error message is displayed. After the period of time specified in the configuration (at least one minute later), the node again tries to read the data from the C.M.I. Latest now, this should work successfully. If not, please check whether the node is really only configured once. Even if you want to read out multiple values you must configure the C.M.I. only once (click the little pencil-icon only in the first node you add). If you re-use the node, just open the dropdown and select the already configured C.M.I. 
 
-Q: **The user credentials in the configuration of the node are correct, but the node still displays `wrong user or password`.**
+**The user credentials in the configuration of the node are correct, but the node still displays `wrong user or password`.**
 
+>You **must** use the credentials of an **"expert"** user. A normal user or guest does not work. 
+>
+>This is a requirement by Technische Alternative RT GmbH and not by the node.
 
-A: You **must** use the credentials of an **"expert"** user. A normal user or guest does not work. 
-This is a requirement by Technische Alternative RT GmbH and not by the node.
+**I configured a polling intervall of 2 minutes in the configuration of the C.M.I. but the node(s) send(s) out data every 1 minute**
+
+>This was a bug in the initial version and is corrected since version 0.1.2
 
 ## Bugs and feature requests
 
-This node was developed in my spare time (when I should actually be sleeping). If you have any change requests or notice errors, please be patient with me; it may take a while, but I am happy to add extensions and eliminate errors. Please report any issues or enhancement requests at <a href="https://github.com/PeterAustria/node-red-contrib-ta-cmi/issues">GitHub</a>.
+This node was developed in my spare time (when I should be sleeping). If you have any change requests or notice errors, please be patient with me; it may take a while, but I am happy to add extensions and eliminate errors. Please report any issues or enhancement requests at <a href="https://github.com/PeterAustria/node-red-contrib-ta-cmi/issues">GitHub</a>.
