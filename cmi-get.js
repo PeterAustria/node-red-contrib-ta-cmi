@@ -19,15 +19,20 @@ module.exports = function (RED) {
 		if (ts) { // Date and Time as a JS-Timestamp (in Millisekonds, as UTC)
 			var date = new Date(ts)
 			var hour = date.getUTCHours();
-		} else { // no Parameter provided, so take system-time (not in UTC)
+			var minute = date.getUTCMinutes();
+			var second = date.getUTCSeconds();
+			var day = date.getUTCDate();
+			var month = date.getUTCMonth() + 1; // month as a number 0-11, so add 1
+			var year = date.getUTCFullYear();
+			} else { // no Parameter provided, so take system-time (not in UTC)
 			var date = new Date()
 			var hour = date.getHours();
-		};
-		var minute = date.getMinutes();
-		var second = date.getSeconds();
-		var day = date.getDate();
-		var month = date.getMonth() + 1; // month as a number 0-11, so add 1
-		var year = date.getFullYear();
+			var minute = date.getMinutes();
+			var second = date.getSeconds();
+			var day = date.getDate();
+			var month = date.getMonth() + 1; // month as a number 0-11, so add 1
+			var year = date.getFullYear();
+			};
 		if (hour < 10) { hour = '0' + hour; }
 		if (minute < 10) { minute = '0' + minute; }
 		if (second < 10) { second = '0' + second; }
@@ -81,7 +86,7 @@ module.exports = function (RED) {
 						newmsg.payload = msg.data.Data[cmiSecitons[config.source]][config.item - 1].Value.Value; // "item -1": CMI starts counting with 1, JS starts with 0 
 						newmsg.unit = cmiUnits[msg.data.Data[cmiSecitons[config.source]][config.item - 1].Value.Unit];
 						newmsg.topic = config.name;
-						newmsg.timestamp = msg.data.Header.Timestamp * 1000; //"* 1000": because it is a Unix timestamp (in sec) and not a JS timestamp (in ms)"
+						let cmits = msg.data.Header.Timestamp * 1000; //"* 1000": because it is a Unix timestamp (in sec) and not a JS timestamp (in ms)"
 						if (config.source == 1) { // Datalogging Digital -> Replace Topic with single word ("AUS/EIN" -> "AUS" or "EIN")
 							let part = newmsg.unit.split('/');
 							newmsg.unit = part[newmsg.payload];
@@ -91,11 +96,11 @@ module.exports = function (RED) {
 						switch (config.timestamp) {
 							case '1':
 								// Time only
-								statustext += ' (' + dateTime(newmsg.timestamp, false) + ')';  
+								statustext += ' (' + dateTime(cmits, false) + ')';  
 								break;
 							case '2':
 								// Date and Time
-								statustext += ' (' + dateTime(newmsg.timestamp, true) + ')';
+								statustext += ' (' + dateTime(cmits, true) + ')';
 								break;
 						};
 						let newValue = parseFloat(newmsg.payload);

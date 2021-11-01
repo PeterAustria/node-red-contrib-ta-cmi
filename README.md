@@ -27,7 +27,7 @@ npm install node-red-contrib-ta-cmi
 
 
 ```
-[{"id":"d32cf45d.c9a4","type":"cmi in","z":"9bcb7893.92f808","cmi":"244863cc.935f84","name":"Feute Keller","item":"23","source":"0","timestamp":"0","x":150,"y":120,"wires":[["aae3b244.fd7a28","d1ffe25.0138b2"]]},{"id":"fcc86929.a56a38","type":"cmi in","z":"9bcb7893.92f808","cmi":"244863cc.935f84","name":"Feute Garage","item":"24","source":"0","timestamp":"0","x":150,"y":180,"wires":[["aae3b244.fd7a28","24ab1b9c.7347a4"]]},{"id":"47dea5ed.759ebc","type":"cmi in","z":"9bcb7893.92f808","cmi":"244863cc.935f84","name":"Ventilator EIN/AUS","item":"21","source":"1","timestamp":"0","x":170,"y":260,"wires":[["b57f6bfa.8cb098"]]},{"id":"2d98b677.847f9a","type":"cmi in","z":"9bcb7893.92f808","cmi":"244863cc.935f84","name":"Entfeuchtung EIN/AUS","item":"22","source":"1","timestamp":"0","x":180,"y":320,"wires":[["1a6a8eed.4f3099"]]},{"id":"aae3b244.fd7a28","type":"ui_chart","z":"9bcb7893.92f808","name":"Feuchte Keller/Garage","group":"88a17a33.f3f398","order":1,"width":"10","height":"6","label":"","chartType":"line","legend":"true","xformat":"HH:mm","interpolate":"linear","nodata":"","dot":false,"ymin":"40","ymax":"","removeOlder":"24","removeOlderPoints":"","removeOlderUnit":"3600","cutout":0,"useOneColor":false,"useUTC":false,"colors":["#097479","#aec7e8","#ff810f","#2ca02c","#98df8a","#d62728","#ff9896","#9467bd","#c5b0d5"],"outputs":1,"useDifferentColor":false,"x":570,"y":240,"wires":[[]]},{"id":"d1ffe25.0138b2","type":"ui_gauge","z":"9bcb7893.92f808","name":"Feuchte Keller","group":"88a17a33.f3f398","order":2,"width":"2","height":"2","gtype":"gage","title":"Keller","label":"%rF","format":"{{value}}","min":"0","max":"100","colors":["#ff0000","#097479","#ff0000"],"seg1":"50","seg2":"75","x":540,"y":120,"wires":[]},{"id":"24ab1b9c.7347a4","type":"ui_gauge","z":"9bcb7893.92f808","name":"Feuchte Garage","group":"88a17a33.f3f398","order":3,"width":"2","height":"2","gtype":"gage","title":"Garage","label":"%rF","format":"{{value}}","min":"0","max":"100","colors":["#ff0000","#097479","#ff0000"],"seg1":"50","seg2":"75","x":550,"y":180,"wires":[]},{"id":"b57f6bfa.8cb098","type":"change","z":"9bcb7893.92f808","name":"0/1","rules":[{"t":"change","p":"payload","pt":"msg","from":"true","fromt":"bool","to":"49","tot":"num"},{"t":"change","p":"payload","pt":"msg","from":"false","fromt":"bool","to":"45","tot":"num"},{"t":"set","p":"topic","pt":"msg","to":"\"Ventilator EIN/AUS\"","tot":"str"}],"action":"","property":"","from":"","to":"","reg":false,"x":350,"y":260,"wires":[["aae3b244.fd7a28"]]},{"id":"1a6a8eed.4f3099","type":"change","z":"9bcb7893.92f808","name":"0/1","rules":[{"t":"change","p":"payload","pt":"msg","from":"true","fromt":"bool","to":"44","tot":"num"},{"t":"change","p":"payload","pt":"msg","from":"false","fromt":"bool","to":"40","tot":"num"},{"t":"set","p":"topic","pt":"msg","to":"\"Entfeuchtung EIN/AUS\"","tot":"str"}],"action":"","property":"","from":"","to":"","reg":false,"x":350,"y":320,"wires":[["aae3b244.fd7a28"]]},{"id":"244863cc.935f84","type":"cmi config","description":"TA C.M.I.","ip":"192.168.1.8","interval":"1"},{"id":"88a17a33.f3f398","type":"ui_group","name":"Entfeuchtung Keller","tab":"18886b9.a624594","order":9,"disp":true,"width":"12","collapse":true},{"id":"18886b9.a624594","type":"ui_tab","name":"Keller / Garage","icon":"exposure_neg_1","order":3,"disabled":false,"hidden":false}]
+[{"id":"8ca1c094.c35c68","type":"cmi in","z":"7ef2298e.f66cf","cmi":"244863cc.935f84","name":"Feuchte Keller","item":"23","source":"0","timestamp":"1","skip":"0","severity":"0","x":180,"y":120,"wires":[["30c4ce5f.62087a","88b49ced.a1c3e"]]},{"id":"261f918e.49207e","type":"cmi in","z":"7ef2298e.f66cf","cmi":"244863cc.935f84","name":"Feuchte Garage","item":"24","source":"0","timestamp":"1","skip":"0","severity":"0","x":180,"y":180,"wires":[["2f87374f.367ba","88b49ced.a1c3e"]]},{"id":"10312ce.c52ab53","type":"cmi in","z":"7ef2298e.f66cf","cmi":"244863cc.935f84","name":"Ventilator EIN/AUS","item":"21","source":"1","timestamp":"1","skip":"0","severity":"0","x":190,"y":260,"wires":[["2fcc655c.f0ac02"]]},{"id":"1208a86d.6bd66","type":"cmi in","z":"7ef2298e.f66cf","cmi":"244863cc.935f84","name":"Entfeuchtung EIN/AUS","item":"22","source":"1","timestamp":"1","skip":"0","severity":"0","x":200,"y":320,"wires":[["573c0851.6ffff"]]},{"id":"88b49ced.a1c3e","type":"ui_chart","z":"7ef2298e.f66cf","name":"Feuchte Keller/Garage","group":"88a17a33.f3f398","order":1,"width":"10","height":"6","label":"","chartType":"line","legend":"true","xformat":"HH:mm","interpolate":"linear","nodata":"","dot":false,"ymin":"40","ymax":"","removeOlder":"24","removeOlderPoints":"","removeOlderUnit":"3600","cutout":0,"useOneColor":false,"useUTC":false,"colors":["#097479","#aec7e8","#ff810f","#2ca02c","#98df8a","#d62728","#ff9896","#9467bd","#c5b0d5"],"outputs":1,"useDifferentColor":false,"x":610,"y":240,"wires":[[]]},{"id":"30c4ce5f.62087a","type":"ui_gauge","z":"7ef2298e.f66cf","name":"Feuchte Keller","group":"88a17a33.f3f398","order":2,"width":"2","height":"2","gtype":"gage","title":"Keller","label":"%rF","format":"{{value}}","min":"0","max":"100","colors":["#ff0000","#097479","#ff0000"],"seg1":"50","seg2":"75","x":580,"y":120,"wires":[]},{"id":"2f87374f.367ba","type":"ui_gauge","z":"7ef2298e.f66cf","name":"Feuchte Garage","group":"88a17a33.f3f398","order":3,"width":"2","height":"2","gtype":"gage","title":"Garage","label":"%rF","format":"{{value}}","min":"0","max":"100","colors":["#ff0000","#097479","#ff0000"],"seg1":"50","seg2":"75","x":590,"y":180,"wires":[]},{"id":"2fcc655c.f0ac02","type":"change","z":"7ef2298e.f66cf","name":"0/1","rules":[{"t":"change","p":"payload","pt":"msg","from":"1","fromt":"num","to":"49","tot":"num"},{"t":"change","p":"payload","pt":"msg","from":"0","fromt":"num","to":"45","tot":"num"}],"action":"","property":"","from":"","to":"","reg":false,"x":390,"y":260,"wires":[["88b49ced.a1c3e"]]},{"id":"573c0851.6ffff","type":"change","z":"7ef2298e.f66cf","name":"0/1","rules":[{"t":"change","p":"payload","pt":"msg","from":"1","fromt":"num","to":"44","tot":"num"},{"t":"change","p":"payload","pt":"msg","from":"0","fromt":"num","to":"40","tot":"num"}],"action":"","property":"","from":"","to":"","reg":false,"x":390,"y":320,"wires":[["88b49ced.a1c3e"]]},{"id":"244863cc.935f84","type":"cmi config","d":true,"description":"TA C.M.I.","ip":"192.168.1.8","interval":"1"},{"id":"88a17a33.f3f398","type":"ui_group","name":"Entfeuchtung Keller","tab":"18886b9.a624594","order":9,"disp":true,"width":"12","collapse":true},{"id":"18886b9.a624594","type":"ui_tab","name":"Keller / Garage","icon":"exposure_neg_1","order":3,"disabled":false,"hidden":false}]
 ```
 
 
@@ -81,26 +81,48 @@ The program development is currently in the test phase. The node has been extens
 - For new nodes, the **default value for 'Source'** is changed to **'Datalogging Analog'**; this setting is usually used more often.
 - Revoved **"debug": "^4.3.1"** as a dependency for the node.
 
-### 0.1.4 Timestamp 2021-11-01
+### 0.1.4 Timestamp 2021-10-31
 - The output message of the node includes as `msg.timestamp` which comes form the C.M.I. and is a Unix timestamp in seconds. But Node-Red uses the JavaScript timestmap which is in Milliseconds. To get a valid JS Timestamp, the timestamp coming from the C.M.I. is now multiplied by 1000 so it can be used correctly by other nodes (like e.g. the chart-node).
+
+### 0.1.5 Timestamp removed from output 2021-11-01
+- The daylight change led to a problem with the time stamp. It seems that the 'chat node' has an undocumented function: it accepts a `msg.timestamp` and uses this as the point in time for the diagram. Unfortunately, the conversion to summer / winter time is not correct. To avoid this, this property has been removed.
+- Added UTC-conversion for all date / time fields.
 
 ## FAQ
 
-**After redeploying, the node desplays `too many requests to C.M.I. (max 1 per min allowed)`.**
+### After redeploying, the node desplays `too many requests to C.M.I. (max 1 per min allowed)`.
 
->The C.M.I. allows a maximum of one query per minute. This is a requirement by Technische Alternative RT GmbH and not by the node.
->
->Through the redeploy, the node is restarted. It immediately tries to access the C.M.I. and read out the latest data. If the last access was not at least 60 seconds ago, this error message is displayed. After the period of time specified in the configuration (at least one minute later), the node again tries to read the data from the C.M.I. Latest now, this should work successfully. If not, please check whether the node is really only configured once. Even if you want to read out multiple values you must configure the C.M.I. only once (click the little pencil-icon only in the first node you add). If you re-use the node, just open the dropdown and select the already configured C.M.I. 
+The C.M.I. allows a maximum of one query per minute. This is a requirement by Technische Alternative RT GmbH and not by the node.
+Through the redeploy, the node is restarted. It immediately tries to access the C.M.I. and read out the latest data. If the last access was not at least 60 seconds ago, this error message is displayed. After the period of time specified in the configuration (at least one minute later), the node again tries to read the data from the C.M.I. Latest now, this should work successfully. If not, please check whether the node is really only configured once. Even if you want to read out multiple values you must configure the C.M.I. only once (click the little pencil-icon only in the first node you add). If you re-use the node, just open the dropdown and select the already configured C.M.I. 
 
-**The user credentials in the configuration of the node are correct, but the node still displays `wrong user or password`.**
 
->You **must** use the credentials of an **"expert"** user. A normal user or guest does not work. 
->
->This is a requirement by Technische Alternative RT GmbH and not by the node.
+### The user credentials in the configuration of the node are correct, but the node still displays `wrong user or password`.
 
-**I configured a polling intervall of 2 minutes in the configuration of the C.M.I. but the node(s) send(s) out data every 1 minute**
+You **must** use the credentials of an **"expert"** user. A normal user or guest does not work. 
 
->This was a bug in the initial version and is corrected since version 0.1.2
+This is a requirement by Technische Alternative RT GmbH and not by the node.
+
+
+### I configured a polling intervall of 2 minutes in the configuration of the C.M.I. but the node(s) send(s) out data every 1 minute.
+
+This was a bug in the initial version and is corrected since version 0.1.2
+
+### Error message `HTTP call and Answer from CMI successful but Node not configured correctly. : Cannot read property '0' of undefined` displayed.
+
+Make sure, that the requested 'Element No.' is included in the Datalogging and Datalogging is configured in the CMI. Probably you addressed an 'Element No.' which is not included in the data coming from C.M.I., or the C.M.I. is configured in a wrong way.
+
+You can easily test this by opening a webbrowser and enter the following line in the address field: 
+
+```
+http://cmi/INCLUDE/api.cgi?jsonnode=1&jsonparam=La,Ld
+```
+
+If required, replace 'cmi' with the ip-address. 
+If the C.M.I is configured correctly, you should get output similar to this:
+
+```
+{ "Header":{ "Version":5, "Device":"87", "Timestamp":1635783575 }, "Data":{ "Logging Analog":[ { "Number":1, "AD":"A", "Value":{ "Value":5.9, "Unit":"1" } }, { "Number":2, "AD":"A", "Value":{ "Value":10.5, "Unit":"1" } },... 
+```
 
 ## Bugs and feature requests
 
