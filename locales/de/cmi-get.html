@@ -13,7 +13,8 @@
                 <dd>Die Bezeichnung dieses Wertes, wie er auch der UI als Beschriftung des Nodes angezeigt wird (siehe unten).</dd>
 
                 <dt>timestamp <span class="property-type">time</span></dt>
-                <dd>Zeitstempel des Datenpakets aus dem C.M.I.</dd>
+                <dd>Dieses Element enthält jenen Zeitstempel, den das C.M.I. beim Lesen der Daten erzeugt. (Das ist nicht der Zeitstempel der Uhr des Rechners, auf der Node-Red läuft).</dd>
+                <dd>Da dieser Unix-Zeitstempel in Sekunden angegeben ist, wird er in eine JavaScript-Zeitstempel in Millisekunden umgewandelt, damit er von anderen Knoten (wie z.B. dem Chart-Knoten) korrekt verwendet werden kann.</dd>
             </dl>
         </ol>
     <h3>Konfiguration</h3>

@@ -81,7 +81,7 @@ module.exports = function (RED) {
 						newmsg.payload = msg.data.Data[cmiSecitons[config.source]][config.item - 1].Value.Value; // "item -1": CMI starts counting with 1, JS starts with 0 
 						newmsg.unit = cmiUnits[msg.data.Data[cmiSecitons[config.source]][config.item - 1].Value.Unit];
 						newmsg.topic = config.name;
-						newmsg.timestamp = msg.data.Header.Timestamp;
+						newmsg.timestamp = msg.data.Header.Timestamp * 1000; //"* 1000": because it is a Unix timestamp (in sec) and not a JS timestamp (in ms)"
 						if (config.source == 1) { // Datalogging Digital -> Replace Topic with single word ("AUS/EIN" -> "AUS" or "EIN")
 							let part = newmsg.unit.split('/');
 							newmsg.unit = part[newmsg.payload];
@@ -91,11 +91,11 @@ module.exports = function (RED) {
 						switch (config.timestamp) {
 							case '1':
 								// Time only
-								statustext += ' (' + dateTime(newmsg.timestamp * 1000, false) + ')';  //"* 1000": because it is a Unix timestamp (in sec) and not a JS timestamp (in ms)"
+								statustext += ' (' + dateTime(newmsg.timestamp, false) + ')';  
 								break;
 							case '2':
 								// Date and Time
-								statustext += ' (' + dateTime(newmsg.timestamp * 1000, true) + ')';
+								statustext += ' (' + dateTime(newmsg.timestamp, true) + ')';
 								break;
 						};
 						let newValue = parseFloat(newmsg.payload);

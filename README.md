@@ -10,7 +10,7 @@
 ![Logo](images/logo.png)
 The **C**ontrol and **M**onitoring **I**nterface (**C.M.I.**) is an interface for convenient system monitoring, remote control and data logging of all controllers with DL or CAN bus form [Technische Alternative RT GmbH, Austria]("https://www.ta.co.at/en/" "Webpage of Technische Alternative RT GmbH").
 
-This node can be configured to query the [C.M.I.]("https://www.ta.co.at/en/x2-operation-interfaces/cmi/" "C.M.I. product page") at configurable intervals and provide any value at its output. So it is easy to access, display and visualize Data that is coming from e.g. the [UVR16x2 programmable universal controler]("https://www.ta.co.at/en/x2-freely-programmable-controllers/uvr16x2/" "UVR16x2 product page")> UVR16x2 programmable universal controler</a> with node-red.
+This node can be configured to query the [C.M.I.]("https://www.ta.co.at/en/x2-operation-interfaces/cmi/" "C.M.I. product page") at configurable intervals and provide any value at its output. So it is easy to access, display and visualize Data that is coming from e.g. the [UVR16x2 programmable universal controler]("https://www.ta.co.at/en/x2-freely-programmable-controllers/uvr16x2/" "UVR16x2 product page") UVR16x2 programmable universal controler</a> with node-red.
 
 
 ## Quick Start
@@ -66,17 +66,23 @@ The program development is currently in the test phase. The node has been extens
 ## Changelog
 
 ### 0.1.0 Initial version 2021-10-22
+
 ### 0.1.1 Minor changes in documentation 2021-10-22
-### 0.1.2 New features added, and bugs removed 2021-10-28
+
+### 0.1.2 New features added, and bugs fixed 2021-10-28
 - **Feature added to skip duplicate values.** It is now possible not to output repetitive values ​​every time, but only after x repetitions of the same value, but immediately when the value is changed. This can be useful, for example, if you want to display the values ​​in a chart node. Because a very high number of values ​​in a chart node significantly reduces performance. If the value is an analog value, you can also set a tolerance in percent within which a value is treated as identical despite a (small) deviation and is therefore not output.
 - **Corrected request time.** In the initial release the node requested data from the C.M.I. twice as often as configured.
 - **removed 'part'** in the message object of digital logging data.
 - **added up/down buttons** for numeric inputs.
+
 ### 0.1.3 Minor changes 2021-10-29
 - Some **spelling mistakes** corrected in the dialogs and also in the help texts.
 - For new nodes, the **default value for 'UI shows ... below the node'** set to **'Value and unit only'** as specified in the documentation.
 - For new nodes, the **default value for 'Source'** is changed to **'Datalogging Analog'**; this setting is usually used more often.
 - Revoved **"debug": "^4.3.1"** as a dependency for the node.
+
+### 0.1.4 Timestamp 2021-11-01
+- The output message of the node includes as `msg.timestamp` which comes form the C.M.I. and is a Unix timestamp in seconds. But Node-Red uses the JavaScript timestmap which is in Milliseconds. To get a valid JS Timestamp, the timestamp coming from the C.M.I. is now multiplied by 1000 so it can be used correctly by other nodes (like e.g. the chart-node).
 
 ## FAQ
 
