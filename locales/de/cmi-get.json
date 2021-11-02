@@ -7,6 +7,9 @@
         "status": {
             "waiting": "warte auf Daten vom C.M.I.",
             "wrongConfiguration": "der Node wurde nicht richtig konfiguriert",
+            "elementNotFound1": "Element Nr.",
+            "elementNotFound2": "in",
+            "elementNotFound3": "nicht gefunden",
             "cmiError4": "zu häufige Abfrage des C.M.I. (max. 1 pro Min. erlaubt)",
             "cmiError": "Fehler im C.M.I. (siehe 'flow editor debug tab' für Details)",
             "httpErrorUser": "falscher Benutzer oder Passwort",
@@ -36,6 +39,16 @@
         "tips": {
             "tip1": "Jedes C.M.I. von dem Sie Daten auslesen wollen, muss nur einmal angelegt werden.",
             "tip2": "Als 'Bezeichnung' können Sie (müssen aber nicht) den gleichen Namen verwenden, wie Sie ihn bei der Definition im X2 Datenlogging gewählt haben."
+        },
+        "units": {
+            "offon": {
+                "off": "AUS",
+                "on": "EIN"
+            },
+            "noyes": {
+                "no": "NEIN",
+                "yes": "JA"
+            }
         }
     }
 }

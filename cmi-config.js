@@ -87,7 +87,7 @@ module.exports = function (RED) {
 					auth: username + ':' + password,
 					hostname: hostname,
 					port: 80,
-					path: '/INCLUDE/api.cgi?jsonnode=1&jsonparam=La,Ld',
+					path: '/INCLUDE/api.cgi?jsonnode=1&jsonparam=La,Ld,I,O',
 					method: 'GET'
 				}
 				const httpResult = http.request(options, httpResult => {

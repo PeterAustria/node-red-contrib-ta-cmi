@@ -7,6 +7,9 @@
         "status": {
             "waiting": "waiting for data to arrive",
             "wrongConfiguration": "node not properly configured",
+            "elementNotFound1": "Element No.",
+            "elementNotFound2": "in",
+            "elementNotFound3": "not found",
             "cmiError4": "too many requests to C.M.I. (max 1 per min allowed)",
             "cmiError": "C.M.I. Error (see flow editor debug tab for more details)",
             "httpErrorUser": "wrong username or password",
@@ -35,6 +38,16 @@
         "tips": {
             "tip1": "Every C.M.I. from which you want to read out data must be created only once.",
             "tip2": "You can (but do not have to) use the same name as the description you selected when you defined it in X2 data logging."
+        },
+        "units": {
+            "offon": {
+                "off": "OFF",
+                "on": "ON"
+            },
+            "noyes": {
+                "no": "NO",
+                "yes": "YES"
+            }
         }
     }
 }

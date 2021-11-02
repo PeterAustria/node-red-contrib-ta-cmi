@@ -13,7 +13,9 @@ module.exports = function (RED) {
 	const cmiUnits = ["", "°C", "W/m²", "l/h", "Sek", "Min", "l/Imp", "K", "%", "", "kW", "kWh", "MWh", "V", "mA", "Std", "Tage", "Imp", "kΩ", "l", "km/h",
 		"Hz", "l/min", "bar", "", "km", "m", "mm", "m³", "", "", "", "", "", "", "l/d", "m/s", "m³/min", "m³/h", "m³/d", "mm/min", "mm/h", "mm/d", "AUS/EIN",
 		"NEIN/JA", "", "°C", "", "", "", "€", "$", "g/m³", "", "°", "", "°", "Sek", "", "%", "Uhr", "", "", "A", "", "mbar", "Pa", "ppm", "", "W", "t", "kg", "g", "cm", "K", "lx"];
-	const cmiSecitons = ["Logging Analog", "Logging Digital"];
+		//IF "AUS/EIN" or "NEIN/JA" are changed, change it below in the code as well (search for "NEIN/JA" in the code)
+
+	const cmiSecitons = ["Logging Analog", "Logging Digital","Inputs","Outputs"];
 
 	function dateTime(ts, withDate) {
 		if (ts) { // Date and Time as a JS-Timestamp (in Millisekonds, as UTC)
@@ -87,10 +89,11 @@ module.exports = function (RED) {
 						newmsg.unit = cmiUnits[msg.data.Data[cmiSecitons[config.source]][config.item - 1].Value.Unit];
 						newmsg.topic = config.name;
 						let cmits = msg.data.Header.Timestamp * 1000; //"* 1000": because it is a Unix timestamp (in sec) and not a JS timestamp (in ms)"
-						if (config.source == 1) { // Datalogging Digital -> Replace Topic with single word ("AUS/EIN" -> "AUS" or "EIN")
-							let part = newmsg.unit.split('/');
-							newmsg.unit = part[newmsg.payload];
-//							newmsg.part = part;
+						if (newmsg.unit == 'AUS/EIN') { // Replace "AUS/EIN" with "OFF", "AUS", ... or "ON", "EIN", ...
+							if (newmsg.payload == 0) { newmsg.unit = RED._("cmi.units.offon.off") } else { newmsg.unit = RED._("cmi.units.offon.on") };
+						}
+						if (newmsg.unit == "NEIN/JA") { // Replace "NEIN/JA" with "NO", "NEIN", ... or "YES", "JA", ....
+							if (newmsg.payload == 0) { newmsg.unit = RED._("cmi.units.yesno.no") } else { newmsg.unit = RED._("cmi.units.yesno.yes") };
 						}
 						statustext = newmsg.payload + ' ' + newmsg.unit;
 						switch (config.timestamp) {
@@ -129,8 +132,10 @@ module.exports = function (RED) {
 						}
 						node.status({ fill: "green", shape: "dot", text: statustext });
 					} catch (err) {
-						node.status({ fill: "red", shape: "dot", text: "cmi.status.wrongConfiguration" });
-						node.warn('HTTP call and Answer from CMI successful but Node not configured correctly. : ' + err.message);
+						let text = RED._("cmi.status.elementNotFound1")+' '+config.item+' '+RED._("cmi.status.elementNotFound2")+' '+cmiSecitons[config.source]+' '+RED._("cmi.status.elementNotFound3");
+						node.status({ fill: "red", shape: "dot", text: text });
+//						node.status({ fill: "red", shape: "dot", text: "cmi.status.wrongConfiguration" });
+//						node.warn('HTTP call and Answer from CMI successful but Node not configured correctly. : ' + err.message);
 					}
 				} else { // cmi answer not OK
 					if (msg.data["Status code"] = 4) {
