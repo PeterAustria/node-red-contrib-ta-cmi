@@ -87,6 +87,10 @@ The program development is currently in the test phase. The node has been extens
 ### 0.1.5 Timestamp removed from output 2021-11-01
 - The daylight change led to a problem with the time stamp. It seems that the 'chat node' has an undocumented function: it accepts a `msg.timestamp` and uses this as the point in time for the diagram. Unfortunately, the conversion to summer / winter time is not correct. To avoid this, this property has been removed.
 - Added UTC-conversion for all date / time fields.
+ 
+### 0.1.6 New sources added 2021-11-02
+- Node documentation updated
+- Added Input and Output Sources (currently under test) not documented by now
 
 ## FAQ
 
