@@ -15,12 +15,22 @@
 				value: "not tested"
 			},
 			*/
+            canNode: {
+                value: 1,
+                required: true,
+                validate(v){
+                    const n = Number(v);
+                    return RED.validators.number()(v) && ((n > 0) && (n < 62));
+                }
+            },
 			interval: { 
 				value: 1, 
+				required: true,
                 validate(v){
                     const n = Number(v);
                     return RED.validators.number()(v) && ((n > 0) && (n <= 100));
- 			} }			
+ 				}
+			}			
 		},
 		credentials: {
 			user: { type: "text" },
@@ -46,7 +56,7 @@
 		<input type="text" id="node-config-input-user" style="width: 65%">
 	</div>
 	<div class="form-row">
-		<label for="node-input-password"> <i class="fa fa-lock"></i> <span data-i18n="cmi.label.pwd"></span></label>
+		<label for="node-config-input-password"> <i class="fa fa-lock"></i> <span data-i18n="cmi.label.pwd"></span></label>
 		<input type="password" id="node-config-input-password" style="width: 65%">
 	</div>
 <!--
@@ -57,9 +67,14 @@
 	</div>
 -->	
 	<div class="form-row">
-		<span data-i18n="cmi.label.queryCMI1"></span>
-		<input type="text" id="node-config-input-interval" style="width: 40px">
-		<span data-i18n="cmi.label.queryCMI2"></span>
+		<label for="node-config-input-canNode"><i class="fa fa-share-alt"></i> <span data-i18n="cmi.label.canNode1"></span></label>
+		<input type="number" id="node-config-input-canNode" min="1" max ="62" step = "any" placeholder="1" style="width: 60px;">
+		<span data-i18n="cmi.label.canNode2"></span>
+	</div>
+	<div class="form-row">
+		<label for="nodr-config-input-interval"><i class="fa fa-hourglass-start"></i> <span data-i18n="cmi.label.interval1"></span></label>
+		<input type="number" id="node-config-input-interval" min="1" max ="99" step = "any" placeholder="1" style="width: 60px;">
+		<span data-i18n="cmi.label.interval2"></span>
 	</div>
 	<div class="form-tips"> <span data-i18n="cmi.tips.tip1"></span></div>
 </script>

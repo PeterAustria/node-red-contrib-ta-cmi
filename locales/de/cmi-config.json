@@ -10,8 +10,10 @@
             "usr": "Benutzer",
             "pwd": "Passwort",
             "status": "Status",
-            "queryCMI1": "Frage das C.M.I. alle",
-            "queryCMI2": "Minuten nach neuen Daten ab."
+            "canNode1": "CAN Knoten",
+            "canNode2": "der abgefragt werden soll",
+            "interval1": "Intervall",
+            "interval2": "Minute(n) zur Abfrage neuer Daten"
         },
         "tips": {
             "tip1": "Sie müssen die Daten des Kontos 'Experte' verwenden und auf die Groß-/Kleinschreibung achten. Das Anwender- oder Gastkonto funktioniert nicht."

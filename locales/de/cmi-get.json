@@ -10,8 +10,14 @@
             "elementNotFound1": "Element Nr.",
             "elementNotFound2": "in",
             "elementNotFound3": "nicht gefunden",
+            "cmiError1": "der CAN Knoten ist nicht vorhanden / sendet keine Daten",
+            "cmiError2": "Fehler beim Zugriff auf CAN Bus / Parameter für Gerät nicht zulässig",
+            "cmiError3": "Syntax Fehler im Zugriffsstring",
             "cmiError4": "zu häufige Abfrage des C.M.I. (max. 1 pro Min. erlaubt)",
-            "cmiError": "Fehler im C.M.I. (siehe 'flow editor debug tab' für Details)",
+            "cmiError5": "das Gerät wird nicht unterstützt",
+            "cmiError6": "zu wenig Argumente übergeben - jsonnode oder jsonparam nicht angegeben",
+            "cmiError7": "der CAN Bus ist blockiert - prüfen, wenn der Fehler andauert",
+            "cmiError": "Allgemeiner Fehler im C.M.I. (siehe 'flow editor debug tab' für Details)",
             "httpErrorUser": "falscher Benutzer oder Passwort",
             "httpErrorHost": "falsche IP/Hostname oder C.M.I. nicht erreichbar",
             "httpError": "allgemeiner Fehler beim Verbinden zum C.M.I.",
@@ -36,6 +42,17 @@
             "temp3": "ausgegeben Wert weniger als",
             "temp4": "Prozent beträgt."
         },
+        "sources" : {
+            "option0" : "Datenlogging analog (nur X2-tech)",
+            "option1" : "Datenlogging digital (nur X2-tech)",
+            "option2" : "Eingänge",
+            "option3" : "Ausgänge"
+        },
+        "timestamps" : {
+            "option0" : "Wert und Einheit",
+            "option1" : "Wert, Einheit und Zeit",
+            "option2" : "Wert, Einheit Datum und Zeit"
+        },    
         "tips": {
             "tip1": "Jedes C.M.I. von dem Sie Daten auslesen wollen, muss nur einmal angelegt werden.",
             "tip2": "Als 'Bezeichnung' können Sie (müssen aber nicht) den gleichen Namen verwenden, wie Sie ihn bei der Definition im X2 Datenlogging gewählt haben."

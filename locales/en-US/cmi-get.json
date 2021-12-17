@@ -10,8 +10,14 @@
             "elementNotFound1": "Element No.",
             "elementNotFound2": "in",
             "elementNotFound3": "not found",
+            "cmiError1": "the CAN node is not available / does not send data",
+            "cmiError2": "Failure during the CAN-request/parameter not available for this device",
+            "cmiError3": "Syntax error in the request String",
             "cmiError4": "too many requests to C.M.I. (max 1 per min allowed)",
-            "cmiError": "C.M.I. Error (see flow editor debug tab for more details)",
+            "cmiError5": "this device is not supported",
+            "cmiError6": "too few arguments - jsonnode or jsonparam not set",
+            "cmiError7": "CAN bus is busy - check if error persits",
+            "cmiError": "genarl Error in C.M.I. (siehe 'flow editor debug tab' für Details)",
             "httpErrorUser": "wrong username or password",
             "httpErrorHost": "wrong hostname / IP or C.M.I. not reachable",
             "httpError": "generic error connecting to C.M.I.",
@@ -35,6 +41,17 @@
             "temp3": "output value is less than",
             "temp4": "percent."
         },
+        "sources" : {
+            "option0" : "Datalogging analog (X2-tech only)",
+            "option1" : "Datalogging aigital (X2-tech only)",
+            "option2" : "Inputs",
+            "option3" : "Outputs"
+        },
+        "timestamps" : {
+            "option0" : "Value and unit",
+            "option1" : "Value, Unit and Time",
+            "option2" : "Value, Unit, Date and Time"
+        },    
         "tips": {
             "tip1": "Every C.M.I. from which you want to read out data must be created only once.",
             "tip2": "You can (but do not have to) use the same name as the description you selected when you defined it in X2 data logging."

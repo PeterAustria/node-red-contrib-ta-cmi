@@ -75,19 +75,19 @@ module.exports = function (RED) {
 		///
 		/// Read data from CMI
 		//
-		function httpGet(hostname, username, password) {
+		function httpGet(hostname, username, password, canNode) {
 			var sData = "";
 			var res = {}; // result that is returned to the calling function (as the msg Object)
 			res.data = {};
 
 			if (liveData) {
 				// start http-request
-				if (debug) { console.log(nodeName + 'Starting httpGet to ' + hostname + ' started using credentials ' + username + ' | ' + password + ' at ' + dateTime()) };
+				if (debug) { console.log(nodeName + 'Starting httpGet to ' + hostname + ' started, using CANnode ' + canNode + ' and credentials ' + username + ' | ' + password + ' at ' + dateTime()) };
 				const options = {
 					auth: username + ':' + password,
 					hostname: hostname,
 					port: 80,
-					path: '/INCLUDE/api.cgi?jsonnode=1&jsonparam=La,Ld,I,O',
+					path: '/INCLUDE/api.cgi?jsonnode='+canNode+'&jsonparam=La,Ld,I,O',
 					method: 'GET'
 				}
 				const httpResult = http.request(options, httpResult => {
@@ -167,6 +167,7 @@ module.exports = function (RED) {
 			console.log(nodeName + 'node description = ' + config.description);
 			console.log(nodeName + 'node id          = ' + node.nodeId);
 			console.log(nodeName + "ip               = " + config.ip);
+			console.log(nodeName + "canNode          = " + config.canNode);
 			console.log(nodeName + "interval         = " + config.interval);
 			console.log(nodeName + "user             = " + node.credentials.user);
 			console.log(nodeName + "password         = " + node.credentials.password);
@@ -174,7 +175,7 @@ module.exports = function (RED) {
 
 		// start/try to read data from CMI 1 Second after initialisation
 		setTimeout(function () {
-			httpGet(config.ip, node.credentials.user, node.credentials.password) // 1. http read request to CMI after 1 second
+			httpGet(config.ip, node.credentials.user, node.credentials.password, config.canNode.toString()); // 1. http read request to CMI after 1 second
 		}, 1000);
 
 		//Setup repeater
@@ -187,7 +188,7 @@ module.exports = function (RED) {
 				this.repeaterID = setInterval(function () {
 					// This code is executed repeated
 					if (debug) { console.log(nodeName + 'Repeatingly fired ' + dateTime()) };
-					httpGet(config.ip, node.credentials.user, node.credentials.password); // continuous http reqad requests to CMI
+					httpGet(config.ip, node.credentials.user, node.credentials.password, config.canNode.toString()); // continuous http reqad requests to CMI
 				}, repeat);
 			}
 		} // node.repeaterSetup

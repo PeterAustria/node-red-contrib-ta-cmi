@@ -10,8 +10,10 @@
             "usr": "Username",
             "pwd": "Password",
             "status": "Status",
-            "queryCMI1": "Query C.M.I. every",
-            "queryCMI2": "minutes for new Data."
+            "canNode1": "CAN Node",
+            "canNode2": "to be queried",
+            "interval1": "Interval",
+            "interval2": "minute(s) to query for new Data"
         },
         "tips": {
             "tip1": "You must use the data from the 'Expert' account in case sensitive letters. The user or guest account does not work."

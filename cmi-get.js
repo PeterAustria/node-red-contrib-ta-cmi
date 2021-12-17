@@ -134,15 +134,42 @@ module.exports = function (RED) {
 					} catch (err) {
 						let text = RED._("cmi.status.elementNotFound1")+' '+config.item+' '+RED._("cmi.status.elementNotFound2")+' '+cmiSecitons[config.source]+' '+RED._("cmi.status.elementNotFound3");
 						node.status({ fill: "red", shape: "dot", text: text });
-//						node.status({ fill: "red", shape: "dot", text: "cmi.status.wrongConfiguration" });
-//						node.warn('HTTP call and Answer from CMI successful but Node not configured correctly. : ' + err.message);
 					}
 				} else { // cmi answer not OK
-					if (msg.data["Status code"] = 4) {
-						node.status({ fill: "yellow", shape: "dot", text: "cmi.status.cmiError4" });
-					} else {
-						node.status({ fill: "red", shape: "dot", text: "cmi.status.cmiError" });
-						node.warn('HTTP call successful but CMI answered: ' + msg.data["Status code"] + '-' + msg.data.Status);
+					switch (msg.data["Status code"]) {
+						case 1:
+							// NODE ERROR
+							node.status({ fill: "yellow", shape: "dot", text: "cmi.status.cmiError1" });
+							break;
+						case 2:
+							// FAIL
+							node.status({ fill: "yellow", shape: "dot", text: "cmi.status.cmiError3" });
+							break;
+						case 3:
+							// SYNTAX ERROR
+							node.status({ fill: "red", shape: "dot", text: "cmi.status.cmiError3" });
+							node.warn('HTTP call successful but CMI answered: ' + msg.data["Status code"] + '-' + msg.data.Status);
+							break;
+						case 4:
+							// TOO MANY REQUESTS
+							node.status({ fill: "yellow", shape: "dot", text: "cmi.status.cmiError4" });
+							break;
+						case 5:
+							// DEVICE NOT SUPPORTED
+							node.status({ fill: "yellow", shape: "dot", text: "cmi.status.cmiError5" });
+							break;
+						case 6:
+							// TOO FEW ARGUMENTS
+							node.status({ fill: "red", shape: "dot", text: "cmi.status.cmiError6" });
+							node.warn('HTTP call successful but CMI answered: ' + msg.data["Status code"] + '-' + msg.data.Status);
+							break;
+						case 7:
+							// CAN BUSY
+							node.status({ fill: "yellow", shape: "dot", text: "cmi.status.cmiError7" });
+							break;
+						default:
+							node.status({ fill: "red", shape: "dot", text: "cmi.status.cmiError" });
+							node.warn('HTTP call successful but CMI answered: ' + msg.data["Status code"] + '-' + msg.data.Status);
 					}
 				}
 			} else { // http connect not successful
