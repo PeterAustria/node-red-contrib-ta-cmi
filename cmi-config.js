@@ -162,6 +162,11 @@ module.exports = function (RED) {
 		var callNumber = 0;
 		node.Listeners = {};
 		node.nodeId = node.id.replace(/\./g, '_');
+		var canAddr = "1";
+
+		if (typeof config.canNode !== "undefined") {
+			canAddr = String(config.canNode);
+		}
 
 		if (debugDetailed) {
 			console.log(nodeName + 'node description = ' + config.description);
@@ -175,7 +180,7 @@ module.exports = function (RED) {
 
 		// start/try to read data from CMI 1 Second after initialisation
 		setTimeout(function () {
-			httpGet(config.ip, node.credentials.user, node.credentials.password, config.canNode.toString()); // 1. http read request to CMI after 1 second
+			httpGet(config.ip, node.credentials.user, node.credentials.password, canAddr); // 1. http read request to CMI after 1 second
 		}, 1000);
 
 		//Setup repeater
@@ -188,7 +193,7 @@ module.exports = function (RED) {
 				this.repeaterID = setInterval(function () {
 					// This code is executed repeated
 					if (debug) { console.log(nodeName + 'Repeatingly fired ' + dateTime()) };
-					httpGet(config.ip, node.credentials.user, node.credentials.password, config.canNode.toString()); // continuous http reqad requests to CMI
+					httpGet(config.ip, node.credentials.user, node.credentials.password, canAddr); // continuous http reqad requests to CMI
 				}, repeat);
 			}
 		} // node.repeaterSetup

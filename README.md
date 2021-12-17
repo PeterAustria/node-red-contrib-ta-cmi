@@ -12,7 +12,7 @@
 The **C**ontrol and **M**onitoring **I**nterface (**C.M.I.**) is an interface for convenient system monitoring, remote control and data logging of all controllers with DL or CAN bus form [Technische Alternative RT GmbH, Austria]("https://www.ta.co.at/en/" "Webpage of Technische Alternative RT GmbH").
 
 This node can be configured to query the [C.M.I.]("https://www.ta.co.at/en/x2-operation-interfaces/cmi/" "C.M.I. product page") at configurable intervals and provide any value from any node at its output. So it is easy to access, display and visualize Data that is coming from e.g. the [UVR16x2 programmable universal controler]("https://www.ta.co.at/en/x2-freely-programmable-controllers/uvr16x2/" "UVR16x2 product page") UVR16x2 programmable universal controler</a> with node-red.
-This node is multilingual (currently German and Englisch) depending on the system language of node-red. 
+This node is multilingual (currently German and Englisch) depending on the selected system language of node-red. 
 
 
 ## Quick Start
@@ -98,6 +98,8 @@ The program development is currently in the test phase. The node has been extens
 - Further **translations** were done. The whole node is now available in englisch and german language. The language is automaitically selected acording the node-red system settings 
 - Better Status code checking and evaluation of C.M.I. return codes.
 
+### 0.1.8 Fixed issue with undefined variable
+
 ## FAQ
 
 ### After redeploying, the node desplays `too many requests to C.M.I. (max 1 per min allowed)`.
@@ -117,7 +119,7 @@ This is a requirement by Technische Alternative RT GmbH and not by the node.
 
 Make sure, that the requested 'Element No.' is included in the Datalogging and Datalogging is configured in the CMI. Probably you addressed an 'Element No.' which is not included in the data coming from C.M.I., or the C.M.I. is configured in a wrong way.
 
-### Whow can a access a device with another CAN-Node-Number than 1
+### Whow can a access a device with another CAN-Bus-Node-Number than 1
 
 With version 0.1.7 an new option was added to the configuration of the node that allows the node to read data form other devices on the CAN-Bus as well. CAN-Bus number 1 stays as the default.
 
