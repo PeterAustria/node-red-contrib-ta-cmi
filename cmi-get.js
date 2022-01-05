@@ -15,7 +15,7 @@ module.exports = function (RED) {
 		"NEIN/JA", "", "°C", "", "", "", "€", "$", "g/m³", "", "°", "", "°", "Sek", "", "%", "Uhr", "", "", "A", "", "mbar", "Pa", "ppm", "", "W", "t", "kg", "g", "cm", "K", "lx"];
 		//IF "AUS/EIN" or "NEIN/JA" are changed, change it below in the code as well (search for "NEIN/JA" in the code)
 
-	const cmiSecitons = ["Logging Analog", "Logging Digital","Inputs","Outputs"];
+	const cmiSecitons = ["Logging Analog", "Logging Digital","Inputs","Outputs","Network Analog","Network Digital"];
 
 	function dateTime(ts, withDate) {
 		if (ts) { // Date and Time as a JS-Timestamp (in Millisekonds, as UTC)
@@ -123,7 +123,7 @@ module.exports = function (RED) {
 						if ((newValue + varianz >= node.lastValue) && (newValue - varianz <= node.lastValue) && (node.skipped < skip)) {
 							node.skipped ++;
 							if (debug) { node.log(nodeName + '[' + config.name +'[ Skipped: last value ' + node.lastValue + ' | actual value ' + newValue + ' (+/- ' + varianz +') for ' + node.skipped + ' Times now.') };
-							statustext += ' [skipped: ' + node.skipped +']';
+							statustext += ' [' + RED._("cmi.status.skipped") + ': ' + node.skipped + ']';
 						}
 						else {
 							node.send(newmsg);
@@ -132,7 +132,20 @@ module.exports = function (RED) {
 						}
 						node.status({ fill: "green", shape: "dot", text: statustext });
 					} catch (err) {
-						let text = RED._("cmi.status.elementNotFound1")+' '+config.item+' '+RED._("cmi.status.elementNotFound2")+' '+cmiSecitons[config.source]+' '+RED._("cmi.status.elementNotFound3");
+						let cmiSource = RED._("cmi.sources.option99");
+						switch (config.source) {
+							case '0': cmiSource = RED._("cmi.sources.option0"); break;
+							case '1': cmiSource = RED._("cmi.sources.option1"); break;
+							case '2': cmiSource = RED._("cmi.sources.option2"); break;
+							case '3': cmiSource = RED._("cmi.sources.option3"); break;
+							case '4': cmiSource = RED._("cmi.sources.option4"); break;
+							case '5': cmiSource = RED._("cmi.sources.option5"); break;
+						}
+						if (debugDetailed) {	
+							console.log(nodeName + '[' + config.name + '] config.source      : ' + config.source);
+							console.log(nodeName + '[' + config.name + '] cmiSource          : ' + cmiSource);
+						}
+						let text = RED._("cmi.status.elementNotFound1")+' '+config.item+' '+RED._("cmi.status.elementNotFound2")+' "'+cmiSource+'" '+RED._("cmi.status.elementNotFound3");
 						node.status({ fill: "red", shape: "dot", text: text });
 					}
 				} else { // cmi answer not OK

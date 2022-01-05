@@ -1,5 +1,6 @@
 <script type="text/x-red" data-help-name="cmi in">
-    <p>Node um das Control and Monitoring Interface <b>C.M.I.</b> der <b>Technische Alternative RT GmbH, Austria</b> in regelmäßigen Abständen abzufragen und die Ergebnisse am Ausgang bereitzustellen. </p>
+    <p>Ein Node um das Control and Monitoring Interface <b>C.M.I.</b> der <b>Technische Alternative RT GmbH, Austria</b> in regelmäßigen Abständen abzufragen 
+        und die empfangengen Werte eines Reglers/Gerätes am CAN-Bus, am Ausgang des Nodes bereitzustellen. </p>
     <h3>Ausgaben</h3>
         <ol class="node-ports">
             <dl class="message-properties">
@@ -16,26 +17,48 @@
     <h3>Konfiguration</h3>
     <ol class="node-ports">
         <dl class="message-properties">
-            <dt>C.M.I</dt>
-            <dd>Jedes C.M.I. von dem Sie Daten auslesen wollen, muss <b>einmal</b> unter einem eindeutigen Namen angelegt werden. Falls das noch nicht geschehen ist, klicken Sie auf das Symbol mit dem kleinen Stift, um das zu tun. Für alle weiteren Messwerte, die Sie verwenden wollen, wählen Sie in weiterer Folge das bereits angelegte C.M.I. aus.</dd>
+            <dt>C.M.I.</dt>
+            <dd>Jede Kombination aus Gerät/Regler und C.M.I. von der Daten ausgelesen werden sollen, muss <b>einmal</b> unter einem eindeutigen Namen angelegt 
+                werden. Falls das noch nicht geschehen ist, klicken Sie auf das Symbol mit dem kleinen Stift, um dies zu konfigurieren. Für alle weiteren Messwerte, 
+                die Sie aus dieser Kombination verwenden wollen, wählen Sie in weiterer Folge das bereits angelegte C.M.I. aus.</dd>
+            <dd>In den meisten Fällen wird ein Regler (z.B. eine UVR 1611 oder UVR 16x2) sowie ein C.M.I. verwendet. In diesem Fall muss diese Kombination nur 
+                einmal konfiguriert werden. Verwenden Sie mehr als einen Regler, wird für den zweiten Regler eine neue Konfiguration angelegt. <em>Bitte beachten 
+                Sie in diesem Fall das Abfrageintervall von mindestens einer Minute pro C.MI. Weitere Informationen im Feld "Intervall".</em></dd>
 
             <dt>Quelle</dt>
-            <dd>Wählen Sie aus, ob sie einen der 64 analogen Daten oder einen der 64 digitalen Daten aus dem Datenlogging verwenden möchten.</dd>
-                
+            <dd>Wählen Sie, aus welcher Quelle die Daten stammen sollen, die Sie auslesen wollen. Es stehen hier mehrere Möglichkeiten zur Verfügung, die abhängig 
+                vom abgefragten Gerät/Regler sind. Derzeit sind folgende Quellen möglich:</dd>
+            <dd><b>Alle Regler/Geräte am CAN-Bus</b><p>
+                Es können die Werte der 16 <code>Eingänge</code> und der 16 <code>Ausgänge</code> des Reglers/Gerätes abgefragt werden.</dd>
+            <dd><b>UVR 16x2 und andere X2 Geräte</b><p>
+                Es sind jeweils 64 Werte für <code>Datenlogging analog</code> bzw. <code>Datenlogging digital</code> möglich. Die jewieligen Werte können am 
+                Regler/Gerät definiert werden und können Eingänge und Ausgänge, aber auch Ergebnisse von Funktionen etc. sein.</dd>
+            <dd><b>UVR 1611</b><p>
+                Es stehen die Werte für <code>Netzwerkeingang analog</code> bwz. <code>Netzwerkeingang digital</code> zur Verfügung. 
+                <em>Diese beiden Quellen sind in Version 0.1.9 neu hinzugekommen und sind derzeit noch experimentell!</em></dd>
+                            
             <dt>Element</dt>
-            <dd>Geben Sie hier die Nummer des gewünschten Elements aus dem Datenlogging ein. Hierbei ist dieselbe Nummer zu verwenden, die im Datenlogging des X2 Gerätes für diesen Wert (vor dem Doppelpunkt) angezeigt wird.</dd>
+            <dd>Geben Sie hier die Nummer des gewünschten Elements aus der oben gewählten Quelle ein. Hierbei handelt es sich um dieselbe Nummer, die auch im 
+                Regler/Gerät/C.M.I. verwendet wird.</dd>
 
             <dt>Bezeichnung</dt>
-            <dd>Sie können Sie (müssen aber nicht) den gleichen Namen verwenden, wie Sie ihn bei der Definition im X2 Gerät für das Datenlogging gewählt haben. Diese Bezeichnung wird sowohl als Beschriftung des Nodes im UI verwendet, als auch als <code>message.topic</code> am Ausgang des Nodes bereitgestellt.</dd>
-            <dd><em>Es ist leider nicht möglich die Bezeichnung automatisch vom C.M.I. zu übernehmen, da diese nicht in der Schnittstelle vorhanden ist.</em></dd>
+            <dd>Sie können Sie (müssen aber nicht) den gleichen Namen verwenden, wie Sie ihn am Gerät/Regler/C.M.I. vergeben haben. Diese Bezeichnung wird sowohl 
+                als Beschriftung des Nodes im UI verwendet, als auch als <code>message.topic</code> am Ausgang des Nodes bereitgestellt.</dd>
+            <dd><em>Es ist leider nicht möglich die Bezeichnung automatisch vom C.M.I. zu übernehmen, da diese nicht in der Schnittstelle vorhanden ist. Eine 
+                entsprechende Anfrage bei der Technischen Alternative RT GmbH um Erweiterung der Schnittstelle um die Bezeichnung ist leider (bisher) erfolglos geblieben.</em></dd>
             
-            <dt>UI zeigt...</dt>
-            <dd>Im User Interface (UI) von Node-Red werden unterhalb des Nodes standardmäßig der aktuelle Wert und dessen Einheit angezeigt. Zusätzlich kann noch Datum und/oder Uhrzeit, wann der Wert zuletzt ausgelesen wurde, hinzugefügt werden.</dd>
+            <dt>UI zeigt</dt>
+            <dd>Im User Interface (UI) von Node-Red werden unterhalb des Nodes standardmäßig der aktuelle Wert und dessen Einheit angezeigt. Zusätzlich kann noch 
+                Datum und/oder Uhrzeit, wann der Wert zuletzt ausgelesen wurde, zur Anzeige hinzugefügt werden.</dd>
 
             <dt>Überspringe</dt>
-            <dd>Aus Performance-Gründen kann es sinnvoll sein, die Anzahl der ausgelesenen Werte zu reduzieren. Mit dieser Einstellung ist es möglich, sich wiederholende Werte nicht jedes Mal auszugeben, sondern erst nach x Wiederholungen des gleichen Wertes aber sofort bei einer Änderung des Wertes. </dd>
-            <dd>Dies kann zum Beispiel sinnvoll sein, wenn sie die Werte in einem Chart-Node anzeigen lassen wollen. Denn eine sehr hohe Anzahl an Werten in einem Chart-Node reduziert die Performance erheblich.</dd>
-            <dd>Wenn es sich bei dem Wert um einen analogen Wert handelt, kann zusätzlich noch eine Toleranz in Prozent eingestellt werden, innerhalb der ein Wert trotz einer (geringen) Abweichung als identisch behandelt und somit nicht ausgegeben wird.</dd>
+            <dd>Aus Performance-Gründen kann es sinnvoll sein, die Anzahl der ausgelesenen Werte zu reduzieren. Mit dieser Einstellung ist es möglich, gleiche, 
+                sich wiederholende Werte, nicht jedes Mal auszugeben, sondern erst nach x Wiederholungen des gleichen Wertes oder aber sofort, wenn sich der Wert 
+                ändert. Wie oft ein gleichbleibender Wert übersprungen wurde, wird ebenfalls unterhalb des Nodes angezeigt.</dd>
+            <dd>Dies kann zum Beispiel sinnvoll sein, wenn sie die Werte in einem <code>Chart-Node</code> anzeigen lassen wollen. Denn eine sehr hohe Anzahl an 
+                Werten in einem Chart-Node reduziert die Performance erheblich.</dd>
+            <dd>Wenn es sich bei dem Wert um einen analogen Wert handelt, kann zusätzlich noch eine Toleranz in Prozent eingestellt werden, innerhalb der ein 
+                Wert trotz einer (geringen) Abweichung als identisch behandelt und somit nicht ausgegeben wird.</dd>
         
             <dt>
         </dl>

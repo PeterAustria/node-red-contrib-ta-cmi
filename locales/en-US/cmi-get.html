@@ -1,5 +1,6 @@
 <script type="text/x-red" data-help-name="cmi in">
-    <p>A node to query the Control and Monitoring Interface <b>C.M.I.</b> of the <b>Technische Alternative RT GmbH, Austria</b> at regular intervals and to provide the received data as the output. </p>
+    <p>A node to query the Control and Monitoring Interface <b> C.M.I. </b> of <b> Technische Alternative RT GmbH, Austria </b> at regular intervals 
+        and provide the received values of a controller/device on the CAN bus at the output of the node.</p>
     <h3>Outputs</h3>
         <ol class="node-ports">
             <dl class="message-properties">
@@ -17,25 +18,45 @@
     <ol class="node-ports">
         <dl class="message-properties">
             <dt>C.M.I</dt>
-            <dd>Every C.M.I. from which you want to read out data must be created once. If you haven't already done, click the pencil to do so. For all other measured values that you want to use, please select the already configured C.M.I.</dd>
+            <dd>Any combination of device/controller and C.M.I. from which the data is to be read must be created <b>once</b> under a unique name. 
+                If you have not already done so, click on the icon with the small pencil to configure this. For all other measured values that you want to use 
+                from this combination, use the existing C.M.I. configuration. </dd> 
+            <dd> In most cases, only one controller (e.g. a UVR 1611 or UVR 16x2) and one C.M.I. is used. In this case, this combination only needs to be 
+                configured once. If you use more than one controller, a new configuration needs to be created for the second controller. 
+                <em>In this case, please note the query interval of at least one minute per C.MI. More information in the "Interval" field.</em></dd>
 
             <dt>Source</dt>
-            <dd>Select whether you want to use one of the 64 analog data or one of the 64 digital data from the data logging.</dd>
-                
+            <dd>Select the source from which the data that you want to read should come from. There are several options available here, which depend on the 
+                device/controller being queried. The following sources are currently possible:</dd>
+            <dd><b>All devices/controller on the CAN-Bus</b><p>
+                The values of the 16 <code>Inputs</code> and the 16 <code>Outputs</code> of the controller/device can be queried.</dd>
+            <dd><b>UVR 16x2 and other  X2 devices</b><p>
+                64 values are possible for <code>Datalogging analog</code> or <code>Datalogging digital</code>. The respective values can be defined on the 
+                controller/device and can be inputs and outputs, but also results of functions etc.</dd>
+            <dd><b>UVR 1611</b><p>
+                The values for <code>Analog Network inputs</code> or <code>Digital Network inputs</code> are available. 
+                <em> These two sources were added in version 0.1.9 and are currently experimental!</em></dd>
+        
             <dt>Element No.</dt>
-            <dd>Enter here the number of the requested Element from datalogging. Use the same number that is displayed for this value (before the colon) in the data logging of the X2 device.</dd>
-            <dd><em>Unfortunately, it is not possible to automatically get the name from the C.M.I. to be adopted, as this is not available in the interface.</em></dd>
+            <dd>Enter the number of the desired element from the source selected above. This is the same number that is also used in the 
+                controller/device/C.M.I.</dd>
  
             <dt>Description</dt>
-            <dd>You can (but do not have to) use the same name as the description you selected when you defined it in X2 device for data logging. This description is used both as a label for the node in the UI and provided as the <code>message.topic</code> at the node's output.</dd>
+            <dd>You can (but do not have to) use the same name as you used it on the device/controller/C.M.I. 
+                This setting is used both as a label for the node in the UI and provided as a <code>message.topic</code> at the output of the node.</dd>
             
-            <dt>UI shows...</dt>
-            <dd>In the user interface (UI) of Node-Red, the current value and its unit are displayed below the node by default. In addition, the date and/or the time, when the value was last read from C.M.I., can be added.
+            <dt>UI shows</dt>
+            <dd>In the user interface (UI) of Node-Red, the current value and its unit are displayed below the node by default. 
+                In addition, the date and/or time when the value was last read can be added to be displayed.</dd>
    
             <dt>Skip</dt>
-            <dd>For performance reasons, it can make sense to reduce the number of values ​​read out. With this setting it is possible not to output repetitive values ​​every time, but only after x repetitions of the same value, but immediately when the value is changed.</dd>
-            <dd>This can be useful, for example, if you want to display the values ​​in a chart node. Because a very high number of values ​​in a chart node significantly reduces performance.</dd>
-            <dd>If the value is an analog value, you can also set a tolerance in percent within which a value is treated as identical despite a (small) deviation and is therefore not output.</dd>
+            <dd>For performance reasons, it can make sense to reduce the number of values read out. With this setting it is possible to output the same, 
+                repeating values not every time, but only after x repetitions of the same value or immediately if the value changes. How often a constant 
+                value was skipped is also displayed below the node.</dd>
+            <dd>This can be useful, for example, if you want to display the values in a <code>Chart-Node</code>. Because a very high number of values in a chart 
+                node significantly reduces performance.</dd>
+            <dd>If the value is an analog value, a tolerance in percent can also be set within which a value is treated as identical despite a (small) deviation 
+                and is therefore not output.</dd>
 
         </dl>
     </ol>

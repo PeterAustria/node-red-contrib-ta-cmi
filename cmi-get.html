@@ -62,11 +62,11 @@
         outputLabels: "msg.-object with the data read from C.M.I.",
         oneditprepare: function() {
             $("#node-input-source").change(function() {
-                if ($(this).val() != 0) { // show severity input lines only for Datalogging Analog and set value to '0' if not analog
+                if (($(this).val() == 0) || ($(this).val() == 4)) { // show severity input lines only for Datalogging Analog or Analog network inputs and set value to '0' if not analog
+                    $(".severity-row").show(); 
+                } else { 
                     $(".severity-row").hide();
                     $("#node-input-severity").val('0');
-                } else { 
-                    $(".severity-row").show(); 
                 }
             })
 
@@ -88,6 +88,8 @@
 			<option value='1' data-i18n="cmi.sources.option1"></option>
             <option value='2' data-i18n="cmi.sources.option2"></option>
             <option value='3' data-i18n="cmi.sources.option3"></option>
+            <option value='4' data-i18n="cmi.sources.option4"></option>
+            <option value='5' data-i18n="cmi.sources.option5"></option>
 		</select>
 	</div>
     <div class="form-row">

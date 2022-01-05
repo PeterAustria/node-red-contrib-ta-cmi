@@ -8,7 +8,7 @@
             "waiting": "warte auf Daten vom C.M.I.",
             "wrongConfiguration": "der Node wurde nicht richtig konfiguriert",
             "elementNotFound1": "Element Nr.",
-            "elementNotFound2": "in",
+            "elementNotFound2": "in Quelle",
             "elementNotFound3": "nicht gefunden",
             "cmiError1": "der CAN Knoten ist nicht vorhanden / sendet keine Daten",
             "cmiError2": "Fehler beim Zugriff auf CAN Bus / Parameter für Gerät nicht zulässig",
@@ -21,7 +21,8 @@
             "httpErrorUser": "falscher Benutzer oder Passwort",
             "httpErrorHost": "falsche IP/Hostname oder C.M.I. nicht erreichbar",
             "httpError": "allgemeiner Fehler beim Verbinden zum C.M.I.",
-            "GCSError": "keine Live-Daten angefordert, aber Daten im globalen Kontext-Store nicht gefunden"
+            "GCSError": "keine Live-Daten angefordert, aber Daten im globalen Kontext-Store nicht gefunden",
+            "skipped":  "übersprungen"
         },
         "label": {
             "cmi": "C.M.I.",
@@ -46,7 +47,10 @@
             "option0" : "Datenlogging analog (nur X2-tech)",
             "option1" : "Datenlogging digital (nur X2-tech)",
             "option2" : "Eingänge",
-            "option3" : "Ausgänge"
+            "option3" : "Ausgänge",
+            "option4" : "Netzwerkeingang analog (nur 1611)",
+            "option5" : "Netzwerkeingang digital (nur 1611)",
+            "option99": "nicht definiert"
         },
         "timestamps" : {
             "option0" : "Wert und Einheit",

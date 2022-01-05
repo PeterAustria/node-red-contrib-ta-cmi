@@ -39,7 +39,7 @@ In the "Edit cmi node" properties page klick the little pencil icon and node-red
 
 ![config-node](./images/config.PNG)
 
-**Note:** For each C.M.I. in your network you have to do this only once.
+**Note:** For each combination of a device/controller in your CAN-network you have to do this only once.
 When done, plase click the "Add" button and node-red will return you to the "Edit cmi in node".
 
 ### Settings for each node
@@ -63,6 +63,10 @@ If you like this node and you want it to be supported and improved in future, yo
 ### BETA stage
 
 The program development is currently in the test phase. The node has been extensively tested on my system, and it works with the hardware and configuration I am using. Currently, I do not have any information on how the node behaves in other environments. Please support me by reporting briefly about your experiences at <a href="https://github.com/PeterAustria/node-red-contrib-ta-cmi/issues">Issues on GitHub</a>.
+
+### Language support
+
+This node is autodetecting the installed langeuage of your node-red. Currently it supports Germand and Englisch (other language installs will be displayed in Englisch as well). If you like me to support other languages as well, please drop me a message at <a href="https://github.com/PeterAustria/node-red-contrib-ta-cmi/issues">Issues on GitHub</a>.
 
 ## Changelog
 
@@ -100,6 +104,11 @@ The program development is currently in the test phase. The node has been extens
 
 ### 0.1.8 Fixed issue with undefined variable
 
+### 0.1.9 Digital and analog network inputs added (experimental)
+- As of a user request digital and analog network inputs for the UVR1611 were added. Because I do not have a 1611 available for testing, these settings are currently experimental until I get a resposse to see if it works as expected.
+- Help text for the info tab enhanced
+- Language translations in the UI improved
+
 ## FAQ
 
 ### After redeploying, the node desplays `too many requests to C.M.I. (max 1 per min allowed)`.
@@ -119,7 +128,7 @@ This is a requirement by Technische Alternative RT GmbH and not by the node.
 
 Make sure, that the requested 'Element No.' is included in the Datalogging and Datalogging is configured in the CMI. Probably you addressed an 'Element No.' which is not included in the data coming from C.M.I., or the C.M.I. is configured in a wrong way.
 
-### Whow can a access a device with another CAN-Bus-Node-Number than 1
+### How can I access a device with an `other CAN-Bus-Node-Number than 1`.
 
 With version 0.1.7 an new option was added to the configuration of the node that allows the node to read data form other devices on the CAN-Bus as well. CAN-Bus number 1 stays as the default.
 

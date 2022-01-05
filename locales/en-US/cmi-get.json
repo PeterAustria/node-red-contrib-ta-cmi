@@ -8,7 +8,7 @@
             "waiting": "waiting for data to arrive",
             "wrongConfiguration": "node not properly configured",
             "elementNotFound1": "Element No.",
-            "elementNotFound2": "in",
+            "elementNotFound2": "in Source",
             "elementNotFound3": "not found",
             "cmiError1": "the CAN node is not available / does not send data",
             "cmiError2": "Failure during the CAN-request/parameter not available for this device",
@@ -21,7 +21,8 @@
             "httpErrorUser": "wrong username or password",
             "httpErrorHost": "wrong hostname / IP or C.M.I. not reachable",
             "httpError": "generic error connecting to C.M.I.",
-            "GCSError": "no live data requested but data in global context store not found"
+            "GCSError": "no live data requested but data in global context store not found",
+            "skipped":  "skipped"
         },
         "label": {
             "cmi": "C.M.I.",
@@ -43,9 +44,12 @@
         },
         "sources" : {
             "option0" : "Datalogging analog (X2-tech only)",
-            "option1" : "Datalogging aigital (X2-tech only)",
+            "option1" : "Datalogging digital (X2-tech only)",
             "option2" : "Inputs",
-            "option3" : "Outputs"
+            "option3" : "Outputs",
+            "option4" : "Analog network inputs (1611 only)",
+            "option5" : "Digital network inputs (1611 only)",
+            "option99" : "not defined"
         },
         "timestamps" : {
             "option0" : "Value and unit",
