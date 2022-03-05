@@ -21,6 +21,8 @@
             <dt>Abfrageintervall</dt>
             <dd>Dieses Abfrageintervall legt fest, wie lange zwischen zwei Abfragen des C.M.I gewartet werden soll.</dd>
             <dd><em>Das Minimum beträgt eine Minute und ist von der Technische Alternative RT GmbH so festgelegt und keine Einschränkung durch den Node.</em></dd>
+            <dd>Wenn Sie mehrere Configurationen speichern um mehrere Regler mit einem C.M.I. abzufragen (z.B. eine UVR16x2 und ein RMS610) müssen Sie bei beiden Konfigurationen 2 Minuten als Abfrageintervall setzen, damit das 1-Minuten Abfrageintervall der TA nicht überschritten wird.</dd>
+            <dd>Zur Info: Nach dem Deploy werden die Daten des ersten Gerätes (im Beispiel die der UVR16x2) abgefragt und der Timer für die nächste Abfrage auf 2 Minuten gestellt. Anschließend wird eine Minute gewartet und dann das zweite Gerät (das RSM610) abgefrat und ebenfalls der Timer für die nächste Abfrage auf 2 Minuten gestellt. Dadurch werden abwechselnd die beiden Geräte abgefrat, in der einen Minute das erste Gerät, in der nächsten das Zweite, dannach wieder das erste usw.</dd>
         </dl>
     </ol>
 </script>

@@ -2,6 +2,7 @@
 
 const async = require('async');
 const http = require('http');
+var numberOfConfigNodes = 0; // Holds the total number of configured nodes (usually 1)
 
 //const debug = require('debug')('cmi-config');
 
@@ -37,11 +38,12 @@ module.exports = function (RED) {
 		// emit notification that new data arrived to all nodes
 		//
 		this.notifyChange = function (msg) {
-			if (debugDetailed) { console.log(nodeName + JSON.stringify(msg, null, 2)) };
-			if (debugDetailed) { console.log(nodeName + JSON.stringify(node.Listeners, null, 2)) };
+			//if (debugDetailed) { console.log(nodeName + JSON.stringify(msg, null, 2)) };
+			if (debug) { console.log(nodeName + "Notifying get-node of new data")};
+			//if (debugDetailed) { console.log(nodeName + JSON.stringify(node.Listeners, null, 2)) };
 
 			async.each(node.Listeners, function (listener, callback) {
-				if (debugDetailed) { console.log(nodeName + JSON.stringify(msg, null, 2)) };
+				//if (debugDetailed) { console.log(nodeName + JSON.stringify(msg, null, 2)) };
 				listener(JSON.parse(JSON.stringify(msg)));
 				callback(null);
 			});
@@ -103,20 +105,29 @@ module.exports = function (RED) {
 						httpResult.on('end', () => {
 							// parse http message into object
 							if (debug) { console.log(nodeName + "Start parsing HTTP Data") };
-							res.data = JSON.parse(sData);
-							res.httpStatusCode = httpResult.statusCode;
-							res.httpStatusMessage = httpResult.statusMessage;
-							res.payload = 'Call #' + callNumber + ' to ' + hostname + ' returning ' + res.httpStatusCode + ':' + res.httpStatusMessage + ') from config node';
+							//if (debug) { console.log(nodeName + sData) };
+							try {
+								res.data = JSON.parse(sData);
+								res.httpStatusCode = httpResult.statusCode;
+								res.httpStatusMessage = httpResult.statusMessage;
+							}
+							catch(err) {
+								console.log(nodeName + "Error parsing result: " + err.message);
+								res.data = {};
+								res.httpStatusCode = '998';
+								res.httpStatusMessage = "RESULT FROM HOST NOT PARSEABLE (" + err.message + ")";
+							}
+							res.payload = 'Call #' + callNumber + ' to ' + hostname + ' returning ' + res.httpStatusCode + ': ' + res.httpStatusMessage + ' CMI Code: ' + res.data["Status code"]+' from config node';
 							res.topic = "EMIT #" + callNumber;
 							callNumber = callNumber + 1;
 							node.notifyChange(res); // report the results from CMI to the node
-							})
+						})
 					}
 					else {
 						res.data = {};
 						res.httpStatusCode = httpResult.statusCode;
 						res.httpStatusMessage = httpResult.statusMessage;
-						res.payload = 'Call #' + callNumber + ' to ' + hostname + ' returning ' + res.httpStatusCode + ':' + res.httpStatusMessage + ') from config node';
+						res.payload = 'Call #' + callNumber + ' to ' + hostname + ' returning ' + res.httpStatusCode + ': ' + res.httpStatusMessage + ' from config node';
 						res.topic = "EMIT #" + callNumber;
 						callNumber = callNumber + 1;
 						node.notifyChange(res); // report the results from CMI to the node
@@ -125,7 +136,7 @@ module.exports = function (RED) {
 					res.data = {};
 					res.httpStatusCode = '999';
 					res.httpStatusMessage = "WRONG HOSTNAME, IP ADDRESS OR C.M.I. NOT REACHABLE";
-					res.payload = 'Call #' + callNumber + ' to ' + hostname + ' returning ' + res.httpStatusCode + ':' + res.httpStatusMessage + ') from config node';
+					res.payload = 'Call #' + callNumber + ' to ' + hostname + ' returning ' + res.httpStatusCode + ': ' + res.httpStatusMessage + ' from config node';
 					res.topic = "EMIT #" + callNumber;
 					callNumber = callNumber + 1;
 					node.notifyChange(res); // report the results from CMI to the node
@@ -144,7 +155,7 @@ module.exports = function (RED) {
 					res.httpStatusCode = 200;
 					res.httpStatusMessage = 'NO LIVE DATA - Data coming from global context store';
 				}
-				res.payload = 'Call #' + callNumber + ' to ' + hostname + ' returning ' + res.data["Status code"] + ':' + res.data.Status + ' (' + dateTime(res.data.Header.Timestamp) + ') from config node'
+				res.payload = 'Call #' + callNumber + ' to ' + hostname + ' returning ' + res.data["Status code"] + ': ' + res.data.Status + ' (' + dateTime(res.data.Header.Timestamp) + ') from config node';
 				res.topic = "EMIT #" + callNumber;
 				callNumber = callNumber + 1;
 				node.notifyChange(res); // report the results from CMI to the node
@@ -178,10 +189,14 @@ module.exports = function (RED) {
 			console.log(nodeName + "password         = " + node.credentials.password);
 		} // if (debug)
 
-		// start/try to read data from CMI 1 Second after initialisation
+		node.number = numberOfConfigNodes; // Set actual number of the used config-node starting with 0
+		numberOfConfigNodes++; // Holds the total number of configured nodes (usually 1)
+		let timeToStart = (node.number * 60 * 1000) + 1000; // start/try to read data from CMI. First node after 1 Second, second after 61 seconds, third after 121 seconds after the initialisation of the node
 		setTimeout(function () {
-			httpGet(config.ip, node.credentials.user, node.credentials.password, canAddr); // 1. http read request to CMI after 1 second
-		}, 1000);
+			if (debug) { console.log(nodeName + "Starting config-node number " + node.number + " after " + timeToStart/1000 + " seconds ...")};
+			httpGet(config.ip, node.credentials.user, node.credentials.password, canAddr); // 1. http read of config node #1 request to CMI after 1 second
+			node.repeaterSetup(); // start the next http reads in the configured intervall
+		}, timeToStart);
 
 		//Setup repeater
 		node.repeaterSetup = function () {
@@ -189,7 +204,7 @@ module.exports = function (RED) {
 			if (repeat && !isNaN(repeat) && repeat > 0) {
 				repeat = repeat * 1000 * 60; // in milliseconds
 //				repeat = repeat / 2; // overwrite setting in UI for quicker testing results - remove later!!!
-				if (debug) { console.log(nodeName + "starting repeater setup with interval " + repeat + " ms") };
+				if (debug) { console.log(nodeName + "Starting repeater setup for " + node.id + " (" + node.number + ") with interval " + repeat/1000 + " seconds") };
 				this.repeaterID = setInterval(function () {
 					// This code is executed repeated
 					if (debug) { console.log(nodeName + 'Repeatingly fired ' + dateTime()) };
@@ -198,7 +213,7 @@ module.exports = function (RED) {
 			}
 		} // node.repeaterSetup
 
-		node.repeaterSetup();
+//		node.repeaterSetup();
 		if (debug) { console.log(nodeName + 'Init end') }
 
 		node.on('close', function () {

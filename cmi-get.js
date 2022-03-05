@@ -77,7 +77,7 @@ module.exports = function (RED) {
 		// register listener
 		//
 		node.cmi && node.cmi.registerListener(node, function (msg) {
-			if (debug) { console.log(nodeName + RED._("cmi.logging.newDataArrived") + config.name + ": " + msg.payload) };
+			if (debug) { console.log(nodeName + RED._("cmi.logging.newDataArrived") + " --- "+ config.name + ": " + msg.payload) };
 
 			// start checking Answer and show status in the node.status
 			if (msg.httpStatusCode == 200) { // http connect sucessful
@@ -186,24 +186,29 @@ module.exports = function (RED) {
 					}
 				}
 			} else { // http connect not successful
-				node.warn(RED._("cmi.logging.httpError") + msg.httpStatusCode + '-' + msg.httpStatusMessage);
-				//node.warn('HTTP call to CMI was not successful: ' + msg.httpStatusCode + '-' + msg.statusMessage);
-				switch (Number(msg.httpStatusCode)) {
-					case 300:
+				node.warn(RED._("cmi.logging.httpError") + msg.httpStatusCode + ' - ' + msg.httpStatusMessage);
+				switch (msg.httpStatusCode) {
+				//switch (Number(msg.httpStatusCode)) {
+					case "300":
 						// no live data requested but data in global context store not found
 						node.status({ fill: "red", shape: "dot", text: "cmi.status.GCSError" });
 						break;
-					case 401:
+					case "401":
 						// wrong user oder password
 						node.status({ fill: "red", shape: "dot", text: "cmi.status.httpErrorUser" });
 						break;
-					case 999 :
+					case "999":
 						// wrong IP, hostname or CMI not reachable
+						console.log(nodeName + "*** Error parsing result ***");
 						node.status({ fill: "red", shape: "dot", text: "cmi.status.httpErrorHost" });
 						break;
+					case "998":
+						// answer from host not parseabel
+						node.status({ fill: "red", shape: "dot", text: "cmi.status.parseError" });
+						break;
 					default:
-						// oter http error
-						node.status({ fill: "red", shape: "dot", text: "cmi.status.httpError"});
+						// other http error
+						node.status({ fill: "red", shape: "dot", text: "cmi.status.httpError" });
 				}
 			}
 

@@ -21,6 +21,8 @@
             <dt>Interval</dt>
             <dd>This polling interval defines how long the node will wait between two polls of the C.M.I.
             <dd><em>The minimum is one minute and is determined by Technische Alternative RT GmbH. This is not a restriction by the node.</em></dd>
+            <dd>If you save several configurations to connect several controllers with one C.M.I. (e.g. a UVR16x2 and a RSM610) you must set 2 minutes as the polling interval for both configurations, so that the 1-minute polling interval of the TA is not exceeded.</dd>
+            <dd>For information: After deployment, the data of the first device (in the example the UVR16x2) is queried and the timer for the next query is set to 2 minutes. Then there is a one minute wait and then the second device (the RSM610) is queried and the timer for the next query is also set to 2 minutes. The two devices are then queried alternately, one minute the first device, the next the second, then the first again and so on.</dd>
         </dl>
     </ol>
 </script>

@@ -35,12 +35,13 @@ npm install node-red-contrib-ta-cmi
 ## Configuration
 
 ### One-time Settings
-In the "Edit cmi node" properties page klick the little pencil icon and node-red will show up the "Add new cmi config config node". Here you fill in the requested information as follow:
+In the "Edit cmi node" properties page klick the little pencil icon and node-red will show up the **ADD NEW CMI CONFIG NODE**. Here you fill in the requested information as follows:
 
 ![config-node](./images/config.PNG)
 
-**Note:** For each combination of a device/controller in your CAN-network you have to do this only once.
-When done, plase click the "Add" button and node-red will return you to the "Edit cmi in node".
+**Note:** For each combination of a CAN-Device and C.M.i. in your CAN-network you have to configure this **only once**.
+When done, plase click the "Add" button and node-red will return you to the **EDIT CMI IN NODE**.
+Starting from version 1.0.10 of this node it is possible to query more than one CAN-Device with just one C.M.I. For details have a look at the help page in the flow editor of NODE-Red. 
 
 ### Settings for each node
 You can place as many cmi-in nodes in your flows as you like. From the dropdown select the same C.M.I. for each node (e.g. "TA C.M.I.").
@@ -62,11 +63,11 @@ If you like this node and you want it to be supported and improved in future, yo
 
 ### BETA stage
 
-The program development is currently in the test phase. The node has been extensively tested on my system, and it works with the hardware and configuration I am using. Currently, I do not have any information on how the node behaves in other environments. Please support me by reporting briefly about your experiences at <a href="https://github.com/PeterAustria/node-red-contrib-ta-cmi/issues">Issues on GitHub</a>.
+The node has been extensively tested on my system, and it works with the hardware and configuration I am using. But I also got positive response form some others who use it. If you find any bugs or you need a new feature, please let me know at <a href="https://github.com/PeterAustria/node-red-contrib-ta-cmi/issues">Issues on GitHub</a>.
 
 ### Language support
 
-This node is autodetecting the installed langeuage of your node-red. Currently it supports Germand and Englisch (other language installs will be displayed in Englisch as well). If you like me to support other languages as well, please drop me a message at <a href="https://github.com/PeterAustria/node-red-contrib-ta-cmi/issues">Issues on GitHub</a>.
+This node is autodetecting the installed langeuage of your node-red. Currently it supports Germand and Englisch (other language installs will be displayed in Englisch as well). If you like support for other languages, please also drop me a message at <a href="https://github.com/PeterAustria/node-red-contrib-ta-cmi/issues">Issues on GitHub</a>.
 
 ## Changelog
 
@@ -104,10 +105,16 @@ This node is autodetecting the installed langeuage of your node-red. Currently i
 
 ### 0.1.8 Fixed issue with undefined variable
 
-### 0.1.9 Digital and analog network inputs added (experimental)
-- As of a user request digital and analog network inputs for the UVR1611 were added. Because I do not have a 1611 available for testing, these settings are currently experimental until I get a resposse to see if it works as expected.
+### 0.1.9 Digital and analog network inputs added
+- Digital and analog network inputs for the UVR1611 were added.
 - Help text for the info tab enhanced
 - Language translations in the UI improved
+
+### 0.1.10 One C.M.I. and more CAN-Devices
+- Support for querying more than one CAN-Device with one C.M.I. added. Please see the help page in the flow editor of NODE-Red or the FAQ. 
+- Fixed a possible crash when you enter an IP-Address of another device (not the C.M.I) which also answers with an http-reply but in a wrong format.
+- Fixed pharsing problem
+- Updated help text and translations
 
 ## FAQ
 
@@ -128,9 +135,23 @@ This is a requirement by Technische Alternative RT GmbH and not by the node.
 
 Make sure, that the requested 'Element No.' is included in the Datalogging and Datalogging is configured in the CMI. Probably you addressed an 'Element No.' which is not included in the data coming from C.M.I., or the C.M.I. is configured in a wrong way.
 
-### How can I access a device with an `other CAN-Bus-Node-Number than 1`.
+### How can I access a device with an `other CAN-Bus-Node-Number than 1`?
 
 With version 0.1.7 an new option was added to the configuration of the node that allows the node to read data form other devices on the CAN-Bus as well. CAN-Bus number 1 stays as the default.
+
+### how can I configure the node to query `more than one device on the CAN-Bus with one C.M.I.`?
+
+Starting with version 0.1.10 of this node it is possible to configure more than one CMI-Configurations. For expample we have an UVR16x2, a RMS610 and one C.M.I. in our network.
+1) First we configure the UVR16x2 by clicking the little pencil icon in the **EDIT CMI IN NODE** properties dialog. The properties dialog of **EDIT CMI CONFIG NODE** will open. 
+2) Here we configure the C.M.I. using a meaningful description (e.g. "UVR16x2") and in the accociated field we enter the CAN-number of the device. 
+3) Because we want to query two devices and TA supports only one request per minute, we enter **2 minutes** in the interval field. 
+4) Next we click **Update** to add the first C.M.I.-configuration.
+4) To configure the second device, we select **ADD NEW CMI CONFIG...** in the EDIT CMI NODE properties dialog and click the little pencil icon. The properties dialog of **EDIT CMI CONFIG NODE** will open. 
+5) Here we configure the C.M.I. again, using a meaningful description (e.g. "RSM610") and enter the number of the CAN-Node of the RSM610 in the associated field.
+6) Also here we select **2 minutes** for the interval and click **Update** to add the second C.M.I.-configuration.
+Now we can choose for each value in your flows where it should come from.
+
+**For information:** After deployment, the data of the first device (in the example the UVR16x2) is queried and the timer for the next query is set to 2 minutes. Then there is a one minute wait (fixed by design) and then the second device (the RSM61) is queried and the timer for the next query is also set to 2 minutes. The two devices are then queried alternately, one minute the first device, the next the second, then the first again, etc. If you would have have configured for 3 divices, also use 3 minutes as polling interval.
 
 ## Bugs and feature requests
 

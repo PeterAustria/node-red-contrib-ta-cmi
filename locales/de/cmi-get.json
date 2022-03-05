@@ -17,10 +17,11 @@
             "cmiError5": "das Gerät wird nicht unterstützt",
             "cmiError6": "zu wenig Argumente übergeben - jsonnode oder jsonparam nicht angegeben",
             "cmiError7": "der CAN Bus ist blockiert - prüfen, wenn der Fehler andauert",
-            "cmiError": "Allgemeiner Fehler im C.M.I. (siehe 'flow editor debug tab' für Details)",
+            "cmiError": "allgemeiner Fehler im C.M.I. (siehe 'flow editor debug tab' für Details)",
             "httpErrorUser": "falscher Benutzer oder Passwort",
             "httpErrorHost": "falsche IP/Hostname oder C.M.I. nicht erreichbar",
             "httpError": "allgemeiner Fehler beim Verbinden zum C.M.I.",
+            "parseError": "die Antwort des Hosts konnte nicht interpretiert werden. Falscher Host angegeben?",
             "GCSError": "keine Live-Daten angefordert, aber Daten im globalen Kontext-Store nicht gefunden",
             "skipped":  "übersprungen"
         },

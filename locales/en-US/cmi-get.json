@@ -21,6 +21,7 @@
             "httpErrorUser": "wrong username or password",
             "httpErrorHost": "wrong hostname / IP or C.M.I. not reachable",
             "httpError": "generic error connecting to C.M.I.",
+            "parseError": "the answer of the host could not be parsed. Wrong host applied?",
             "GCSError": "no live data requested but data in global context store not found",
             "skipped":  "skipped"
         },
