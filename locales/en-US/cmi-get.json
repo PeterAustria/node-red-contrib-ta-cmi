@@ -50,6 +50,7 @@
             "option3" : "Outputs",
             "option4" : "Analog network inputs (1611 only)",
             "option5" : "Digital network inputs (1611 only)",
+            "option6" : "DL-Bus",
             "option99" : "not defined"
         },
         "timestamps" : {

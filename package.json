@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-ta-cmi",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "private": false,
   "description": "A node that reads values from a C.M.I. from Technische Alternative RT GmbH.",
   "dependencies": {

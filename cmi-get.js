@@ -15,7 +15,7 @@ module.exports = function (RED) {
 		"NEIN/JA", "", "°C", "", "", "", "€", "$", "g/m³", "", "°", "", "°", "Sek", "", "%", "Uhr", "", "", "A", "", "mbar", "Pa", "ppm", "", "W", "t", "kg", "g", "cm", "K", "lx"];
 		//IF "AUS/EIN" or "NEIN/JA" are changed, change it below in the code as well (search for "NEIN/JA" in the code)
 
-	const cmiSecitons = ["Logging Analog", "Logging Digital","Inputs","Outputs","Network Analog","Network Digital"];
+	const cmiSecitons = ["Logging Analog", "Logging Digital","Inputs","Outputs","Network Analog","Network Digital","DL-Bus"];
 
 	function dateTime(ts, withDate) {
 		if (ts) { // Date and Time as a JS-Timestamp (in Millisekonds, as UTC)
@@ -85,9 +85,19 @@ module.exports = function (RED) {
 					try { // check if all indexes are in the right range a.s.o.
 						let newmsg = {};
 						let statustext = '';
-						newmsg.payload = msg.data.Data[cmiSecitons[config.source]][config.item - 1].Value.Value; // "item -1": CMI starts counting with 1, JS starts with 0 
-						newmsg.unit = cmiUnits[msg.data.Data[cmiSecitons[config.source]][config.item - 1].Value.Unit];
+						// Old: config.item is stored in "Number" and does not represent index of array!
+						// newmsg.payload = msg.data.Data[cmiSecitons[config.source]][config.item - 1].Value.Value; // "item -1": CMI starts counting with 1, JS starts with 0 
+						// newmsg.unit = cmiUnits[msg.data.Data[cmiSecitons[config.source]][config.item - 1].Value.Unit];
+
+						// New by alexhalbi: Parse CMI Output
+						let dataList = msg.data.Data[cmiSecitons[config.source]];
+						let dataItem = dataList.filter(function(item) {
+							return item.Number == config.item
+						})[0];
+						newmsg.payload = dataItem.Value.Value;
+						newmsg.unit = cmiUnits[dataItem.Value.Unit];
 						newmsg.topic = config.name;
+
 						let cmits = msg.data.Header.Timestamp * 1000; //"* 1000": because it is a Unix timestamp (in sec) and not a JS timestamp (in ms)"
 						if (newmsg.unit == 'AUS/EIN') { // Replace "AUS/EIN" with "OFF", "AUS", ... or "ON", "EIN", ...
 							if (newmsg.payload == 0) { newmsg.unit = RED._("cmi.units.offon.off") } else { newmsg.unit = RED._("cmi.units.offon.on") };
@@ -140,6 +150,7 @@ module.exports = function (RED) {
 							case '3': cmiSource = RED._("cmi.sources.option3"); break;
 							case '4': cmiSource = RED._("cmi.sources.option4"); break;
 							case '5': cmiSource = RED._("cmi.sources.option5"); break;
+							case '6': cmiSource = RED._("cmi.sources.option6"); break;
 						}
 						if (debugDetailed) {	
 							console.log(nodeName + '[' + config.name + '] config.source      : ' + config.source);

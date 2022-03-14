@@ -9,10 +9,10 @@
 # node-red-contrib-ta-cmi
 
 ![Logo](images/logo.png)
-The **C**ontrol and **M**onitoring **I**nterface (**C.M.I.**) is an interface for convenient system monitoring, remote control and data logging of all controllers with DL or CAN bus form [Technische Alternative RT GmbH, Austria]("https://www.ta.co.at/en/" "Webpage of Technische Alternative RT GmbH").
+The **C**ontrol and **M**onitoring **I**nterface (**C.M.I.**) is an interface for convenient system monitoring, remote control and data logging of all controllers with DL or CAN bus form [Technische Alternative RT GmbH, Austria](https://www.ta.co.at/en/ "Webpage of Technische Alternative RT GmbH").
 
-This node can be configured to query the [C.M.I.]("https://www.ta.co.at/en/x2-operation-interfaces/cmi/" "C.M.I. product page") at configurable intervals and provide any value from any node at its output. So it is easy to access, display and visualize Data that is coming from e.g. the [UVR16x2 programmable universal controler]("https://www.ta.co.at/en/x2-freely-programmable-controllers/uvr16x2/" "UVR16x2 product page") UVR16x2 programmable universal controler</a> with node-red.
-This node is multilingual (currently German and Englisch) depending on the selected system language of node-red. 
+This node can be configured to query the [C.M.I.](https://www.ta.co.at/en/x2-operation-interfaces/cmi/ "C.M.I. product page") at configurable intervals and provide any value from any node on the TA bus as its output. So it is easy to access, display and visualize Data that is coming from e.g. the [UVR16x2 programmable universal controler](https://www.ta.co.at/en/x2-freely-programmable-controllers/uvr16x2/ "UVR16x2 product page") UVR16x2 programmable universal controler with Node-RED.
+This node is multilingual (currently German and Englisch) depending on the selected system language of Node-RED. 
 
 
 ## Quick Start
@@ -23,7 +23,7 @@ npm install node-red-contrib-ta-cmi
 ```
 ## Example
 
-![Example](images/demo1.png "Example how the output of the node can be used in the dashboard of node-red")
+![Example](images/demo1.png "Example how the output of the node can be used in the dashboard of Node-RED")
 
 ![Example](images/demo2.png "How to 'wire' the nodes in the Example above")
 
@@ -35,26 +35,26 @@ npm install node-red-contrib-ta-cmi
 ## Configuration
 
 ### One-time Settings
-In the "Edit cmi node" properties page klick the little pencil icon and node-red will show up the **ADD NEW CMI CONFIG NODE**. Here you fill in the requested information as follows:
+In the "Edit cmi node" properties page klick the little pencil icon and Node-RED will show up the **ADD NEW CMI CONFIG NODE**. Here you fill in the requested information as follows:
 
 ![config-node](./images/config.PNG)
 
 **Note:** For each combination of a CAN-Device and C.M.i. in your CAN-network you have to configure this **only once**.
-When done, plase click the "Add" button and node-red will return you to the **EDIT CMI IN NODE**.
-Starting from version 1.0.10 of this node it is possible to query more than one CAN-Device with just one C.M.I. For details have a look at the help page in the flow editor of NODE-Red. 
+When done, plase click the "Add" button and Node-RED will return you to the **EDIT CMI IN NODE**.
+Starting from version 1.0.10 of this node it is possible to query more than one CAN-Device with just one C.M.I. For details have a look at the help page in the flow editor of Node-RED. 
 
 ### Settings for each node
-You can place as many cmi-in nodes in your flows as you like. From the dropdown select the same C.M.I. for each node (e.g. "TA C.M.I.").
+You can place as many cmi-in nodes in your flows as you like. From the dropdown select the same C.M.I. for each node (e.g. the default "TA C.M.I.").
 
 ![get-node](./images/get.PNG)
 
-Since version 0.1.2 of the node, you can additionally configure that the node skips a number of duplicate values to reduce the amount of data. For analog data you can also configure a tolerance in percent within which a value is treated as identical despite a (small) deviation and is therefore not output.
+Since version 0.1.2 of the node, you can additionally configure that the node skips a number of duplicate values to reduce the amount of data that is sent out by the node. For analog data you can also configure a tolerance in percent within which a value is treated as identical, despite a (small) deviation and is therefore not output.
 
 ## What else...
 
 ### Responsibility
 
-This node was developed by me privately, in my spare time and it is expressly **NOT a product of Technische Alternative RT GmbH**, but my own, private development. The company Technische Alternative RT GmbH is therefore neither responsible for the function nor for the support of this node. The author provides the code for free on GitHub "as it is" and also assumes no liability for any inconvenience or damage that may 
+This node was developed by me privately, in my spare time and it is expressly **NOT a product of Technische Alternative RT GmbH**. The company Technische Alternative RT GmbH is therefore neither responsible for the function nor for the support of this node. The author provides the code for free on GitHub "as it is" and also assumes no liability for any inconvenience or damage that may 
 result from its use. 
 
 If you like this node and you want it to be supported and improved in future, you could buy me a drink to motivate me to continue adding new features in the future and to maintain the program.
@@ -63,11 +63,11 @@ If you like this node and you want it to be supported and improved in future, yo
 
 ### BETA stage
 
-The node has been extensively tested on my system, and it works with the hardware and configuration I am using. But I also got positive response form some others who use it. If you find any bugs or you need a new feature, please let me know at <a href="https://github.com/PeterAustria/node-red-contrib-ta-cmi/issues">Issues on GitHub</a>.
+The node has been extensively tested on my system, and it works with the hardware and configuration I am using. But I also got positive response form some others who use it. If you find any bugs or you need a new feature, please drop me a note at <a href="https://github.com/PeterAustria/node-red-contrib-ta-cmi/issues">GitHub</a>.
 
 ### Language support
 
-This node is autodetecting the installed langeuage of your node-red. Currently it supports Germand and Englisch (other language installs will be displayed in Englisch as well). If you like support for other languages, please also drop me a message at <a href="https://github.com/PeterAustria/node-red-contrib-ta-cmi/issues">Issues on GitHub</a>.
+This node is autodetecting the langeuage of your Node-RED installation. Currently it supports Germand and Englisch (other language installs will be displayed in Englisch as well). If you like support for other languages and/or you are willing to help with a translation, please also drop me a note at <a href="https://github.com/PeterAustria/node-red-contrib-ta-cmi/issues">GitHub</a>.
 
 ## Changelog
 
@@ -85,10 +85,10 @@ This node is autodetecting the installed langeuage of your node-red. Currently i
 - Some **spelling mistakes** corrected in the dialogs and also in the help texts.
 - For new nodes, the **default value for 'UI shows ... below the node'** set to **'Value and unit only'** as specified in the documentation.
 - For new nodes, the **default value for 'Source'** is changed to **'Datalogging Analog'**; this setting is usually used more often.
-- Revoved **"debug": "^4.3.1"** as a dependency for the node.
+- Removed **"debug": "^4.3.1"** as a dependency for the node.
 
 ### 0.1.4 Timestamp 2021-10-31
-- The output message of the node includes as `msg.timestamp` which comes form the C.M.I. and is a Unix timestamp in seconds. But Node-Red uses the JavaScript timestmap which is in Milliseconds. To get a valid JS Timestamp, the timestamp coming from the C.M.I. is now multiplied by 1000 so it can be used correctly by other nodes (like e.g. the chart-node).
+- The output message of the node includes as `msg.timestamp` which comes form the C.M.I. and is a Unix timestamp in seconds. But Node-RED uses the JavaScript timestmap which is in Milliseconds. To get a valid JS Timestamp, the timestamp coming from the C.M.I. is now multiplied by 1000 so it can be used correctly by other nodes (like e.g. the chart-node).
 
 ### 0.1.5 Timestamp removed from output 2021-11-01
 - The daylight change led to a problem with the time stamp. It seems that the 'chat node' has an undocumented function: it accepts a `msg.timestamp` and uses this as the point in time for the diagram. Unfortunately, the conversion to summer / winter time is not correct. To avoid this, this property has been removed.
@@ -96,11 +96,11 @@ This node is autodetecting the installed langeuage of your node-red. Currently i
  
 ### 0.1.6 New sources added 2021-11-02
 - Node documentation updated
-- Added Input and Output Sources (currently under test) not documented by now
+- Added Input and Output Sources
 
 ### 0.1.7 Option to select the Node number on the CAN-Bus added 2021-12-17
 - Up to version 0.1.6 all Data was read from CAN Device #1. With version 0.1.7 an option was added, that let you **specify** from which **device on the CAN-Bus** the data should be read.
-- Further **translations** were done. The whole node is now available in englisch and german language. The language is automaitically selected acording the node-red system settings 
+- Further **translations** were done. The whole node is now available in englisch and german language. The language is automaitically selected acording the Node-RED system settings 
 - Better Status code checking and evaluation of C.M.I. return codes.
 
 ### 0.1.8 Fixed issue with undefined variable
@@ -111,37 +111,43 @@ This node is autodetecting the installed langeuage of your node-red. Currently i
 - Language translations in the UI improved
 
 ### 0.1.10 One C.M.I. and more CAN-Devices
-- Support for querying more than one CAN-Device with one C.M.I. added. Please see the help page in the flow editor of NODE-Red or the FAQ. 
+- Support for querying more than one CAN-Device with one C.M.I. added. Please see the help page in the flow editor of Node-RED or the FAQ. 
 - Fixed a possible crash when you enter an IP-Address of another device (not the C.M.I) which also answers with an http-reply but in a wrong format.
-- Fixed pharsing problem
-- Updated help text and translations
+- Fixed pharsing problem.
+- Updated help text and translations.
+
+### 0.1.11 Fixed problem with incorrect element numbers and added DL-Bus devices
+- Fixed a problem when numbering of the elements in the device is not consecutive. (Many thanks to [Alexander Halbarth]("https://github.com/alexhalbi" "Githum of Alexander Halbarth") for finding and fixing this issue.)
+- Added DL-Bus devices (e.g. room sensors) 
+
 
 ## FAQ
 
-### After redeploying, the node desplays `too many requests to C.M.I. (max 1 per min allowed)`.
+#### After redeploying, the node desplays `too many requests to C.M.I. (max 1 per min allowed)`.
 
-The C.M.I. allows a maximum of one query per minute. This is a requirement by Technische Alternative RT GmbH and not by the node.
+The C.M.I. allows a maximum of one query per minute. This is a requirement by Technische Alternative RT GmbH and not by this node.
 Through the redeploy, the node is restarted. It immediately tries to access the C.M.I. and read out the latest data. If the last access was not at least 60 seconds ago, this error message is displayed. After the period of time specified in the configuration (at least one minute later), the node again tries to read the data from the C.M.I. Latest now, this should work successfully. If not, please check whether the node is really only configured once. Even if you want to read out multiple values you must configure the C.M.I. only once (click the little pencil-icon only in the first node you add). If you re-use the node, just open the dropdown and select the already configured C.M.I. 
+For querying more devices with one C.M.I. plase have a look at the help text in the node or the FAQ "How can I configure the node to query more than one device on the CAN-Bus with one C.M.I." below.
 
 
-### The user credentials in the configuration of the node are correct, but the node still displays `wrong user or password`.
+#### The user credentials in the configuration of the node are correct, but the node still displays `wrong user or password`.
 
 You **must** use the credentials of an **"expert"** user. A normal user or guest does not work. 
-
 This is a requirement by Technische Alternative RT GmbH and not by the node.
 
 
-### Error message `HTTP call and Answer from CMI successful but Node not configured correctly. : Cannot read property '0' of undefined` displayed.
+#### Error message `HTTP call and Answer from CMI successful but Node not configured correctly. : Cannot read property '0' of undefined` displayed.
 
 Make sure, that the requested 'Element No.' is included in the Datalogging and Datalogging is configured in the CMI. Probably you addressed an 'Element No.' which is not included in the data coming from C.M.I., or the C.M.I. is configured in a wrong way.
 
-### How can I access a device with an `other CAN-Bus-Node-Number than 1`?
+#### How can I access a device with an `other CAN-Bus-Node-Number than 1`?
 
-With version 0.1.7 an new option was added to the configuration of the node that allows the node to read data form other devices on the CAN-Bus as well. CAN-Bus number 1 stays as the default.
+With **version 0.1.7** an new option was added to the configuration of the node that allows the node to read data form other devices on the CAN-Bus as well. CAN-Bus number 1 stays as the default.
 
-### how can I configure the node to query `more than one device on the CAN-Bus with one C.M.I.`?
+#### How can I configure the node to query `more than one device on the CAN-Bus with one C.M.I.`?
 
-Starting with version 0.1.10 of this node it is possible to configure more than one CMI-Configurations. For expample we have an UVR16x2, a RMS610 and one C.M.I. in our network.
+Starting with **version 0.1.10** of this node it is possible to configure more than one CMI-Configurations and query different devices through one C.M.I. 
+For expample we have an UVR16x2, a RMS610 and one C.M.I. in our network.
 1) First we configure the UVR16x2 by clicking the little pencil icon in the **EDIT CMI IN NODE** properties dialog. The properties dialog of **EDIT CMI CONFIG NODE** will open. 
 2) Here we configure the C.M.I. using a meaningful description (e.g. "UVR16x2") and in the accociated field we enter the CAN-number of the device. 
 3) Because we want to query two devices and TA supports only one request per minute, we enter **2 minutes** in the interval field. 
@@ -151,7 +157,9 @@ Starting with version 0.1.10 of this node it is possible to configure more than 
 6) Also here we select **2 minutes** for the interval and click **Update** to add the second C.M.I.-configuration.
 Now we can choose for each value in your flows where it should come from.
 
-**For information:** After deployment, the data of the first device (in the example the UVR16x2) is queried and the timer for the next query is set to 2 minutes. Then there is a one minute wait (fixed by design) and then the second device (the RSM61) is queried and the timer for the next query is also set to 2 minutes. The two devices are then queried alternately, one minute the first device, the next the second, then the first again, etc. If you would have have configured for 3 divices, also use 3 minutes as polling interval.
+**For information:** After deployment, the data of the first device (in the example the UVR16x2) is queried and the timer for the next query is set to 2 minutes (or a multible of 2). Then there is a one minute wait (**this minute is** set by design and **hard-coded** in the node) and then the second device (the RSM61) is queried and the timer for the next query is also set to 2 (or a multible of 2) minutes. The two devices are then queried alternately, one minute the first device, the next minute the second, then the first again, and so on. If you would have configured three divices, also use 3 minutes (or a multible of 3) as polling interval for all three configs.
+
+**Remark:** Doing it the this way is not the preferred way to configure more devices, but it is possible now. The preferred way is to query just one device, in the example only the UVR16x2. To get data from the other device(s) (in the above example the RMS610) simply define the values as digital or analog logging in the UVR6x2 and you will avoid the alternative requests and configuration issus. 
 
 ## Bugs and feature requests
 
