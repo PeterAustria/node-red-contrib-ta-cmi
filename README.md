@@ -71,55 +71,58 @@ This node is autodetecting the langeuage of your Node-RED installation. Currentl
 
 ## Changelog
 
-### 0.1.0 Initial version 2021-10-22
+#### 0.1.0 Initial version 2021-10-22
 
-### 0.1.1 Minor changes in documentation 2021-10-22
+#### 0.1.1 Minor changes in documentation 2021-10-22
 
-### 0.1.2 New features added, and bugs fixed 2021-10-28
+#### 0.1.2 New features added, and bugs fixed 2021-10-28
 - **Feature added to skip duplicate values.** It is now possible not to output repetitive values ​​every time, but only after x repetitions of the same value, but immediately when the value is changed. This can be useful, for example, if you want to display the values ​​in a chart node. Because a very high number of values ​​in a chart node significantly reduces performance. If the value is an analog value, you can also set a tolerance in percent within which a value is treated as identical despite a (small) deviation and is therefore not output.
 - **Corrected request time.** In the initial release the node requested data from the C.M.I. twice as often as configured.
 - **removed 'part'** in the message object of digital logging data.
 - **added up/down buttons** for numeric inputs.
 
-### 0.1.3 Minor changes 2021-10-29
+#### 0.1.3 Minor changes 2021-10-29
 - Some **spelling mistakes** corrected in the dialogs and also in the help texts.
 - For new nodes, the **default value for 'UI shows ... below the node'** set to **'Value and unit only'** as specified in the documentation.
 - For new nodes, the **default value for 'Source'** is changed to **'Datalogging Analog'**; this setting is usually used more often.
 - Removed **"debug": "^4.3.1"** as a dependency for the node.
 
-### 0.1.4 Timestamp 2021-10-31
+#### 0.1.4 Timestamp 2021-10-31
 - The output message of the node includes as `msg.timestamp` which comes form the C.M.I. and is a Unix timestamp in seconds. But Node-RED uses the JavaScript timestmap which is in Milliseconds. To get a valid JS Timestamp, the timestamp coming from the C.M.I. is now multiplied by 1000 so it can be used correctly by other nodes (like e.g. the chart-node).
 
-### 0.1.5 Timestamp removed from output 2021-11-01
+#### 0.1.5 Timestamp removed from output 2021-11-01
 - The daylight change led to a problem with the time stamp. It seems that the 'chat node' has an undocumented function: it accepts a `msg.timestamp` and uses this as the point in time for the diagram. Unfortunately, the conversion to summer / winter time is not correct. To avoid this, this property has been removed.
 - Added UTC-conversion for all date / time fields.
  
-### 0.1.6 New sources added 2021-11-02
+#### 0.1.6 New sources added 2021-11-02
 - Node documentation updated
 - Added Input and Output Sources
 
-### 0.1.7 Option to select the Node number on the CAN-Bus added 2021-12-17
+#### 0.1.7 Option to select the Node number on the CAN-Bus added 2021-12-17
 - Up to version 0.1.6 all Data was read from CAN Device #1. With version 0.1.7 an option was added, that let you **specify** from which **device on the CAN-Bus** the data should be read.
 - Further **translations** were done. The whole node is now available in englisch and german language. The language is automaitically selected acording the Node-RED system settings 
 - Better Status code checking and evaluation of C.M.I. return codes.
 
-### 0.1.8 Fixed issue with undefined variable
+#### 0.1.8 Fixed issue with undefined variable
 
-### 0.1.9 Digital and analog network inputs added
+#### 0.1.9 Digital and analog network inputs added
 - Digital and analog network inputs for the UVR1611 were added.
 - Help text for the info tab enhanced
 - Language translations in the UI improved
 
-### 0.1.10 One C.M.I. and more CAN-Devices
+#### 0.1.10 One C.M.I. and more CAN-Devices
 - Support for querying more than one CAN-Device with one C.M.I. added. Please see the help page in the flow editor of Node-RED or the FAQ. 
 - Fixed a possible crash when you enter an IP-Address of another device (not the C.M.I) which also answers with an http-reply but in a wrong format.
 - Fixed pharsing problem.
 - Updated help text and translations.
 
-### 0.1.11 Fixed problem with incorrect element numbers and added DL-Bus devices
+#### 0.1.11 Fixed problem with incorrect element numbers and added DL-Bus devices
 - Fixed a problem when numbering of the elements in the device is not consecutive. (Many thanks to [Alexander Halbarth]("https://github.com/alexhalbi" "Githum of Alexander Halbarth") for finding and fixing this issue.)
 - Added DL-Bus devices (e.g. room sensors) 
 
+#### 0.1.12 Added Timestamp to the node output
+- An additional field was added in the output of the node, which contains the system time when the message was created. This uses the system time of the C.M.I. from which the data was read, not the time of the NodeRed installation.
+- A problem was fixed that the time before the node reads the first value from the C.M.I. increased with every deployment. This probem was firest seen in Version 0.1.10.
 
 ## FAQ
 

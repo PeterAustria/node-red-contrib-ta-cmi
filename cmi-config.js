@@ -187,11 +187,18 @@ module.exports = function (RED) {
 			console.log(nodeName + "interval         = " + config.interval);
 			console.log(nodeName + "user             = " + node.credentials.user);
 			console.log(nodeName + "password         = " + node.credentials.password);
-		} // if (debug)
+		} // if (debugDetailed)
 
-		node.number = numberOfConfigNodes; // Set actual number of the used config-node starting with 0
-		numberOfConfigNodes++; // Holds the total number of configured nodes (usually 1)
-		let timeToStart = (node.number * 60 * 1000) + 1000; // start/try to read data from CMI. First node after 1 Second, second after 61 seconds, third after 121 seconds after the initialisation of the node
+		node.number = numberOfConfigNodes; // Set actual number of the used config-node start counting with 0
+		numberOfConfigNodes++; // Holds the total number of configured config nodes (usually 1)
+		let timeToStart = (node.number * 60 * 1000) + 1000; // start/try to read data from CMI. First node after 1 Second, second after 61 seconds, third after 121 seconds aso. after the initialisation of the node
+
+		if (debugDetailed) {
+			console.log(nodeName + 'node.number      = ' + node.number);
+			console.log(nodeName + 'NoOfConfigNodes  = ' + numberOfConfigNodes);
+			console.log(nodeName + 'timeToStart      = ' + timeToStart);
+		} // if (debugDetailed)
+
 		setTimeout(function () {
 			if (debug) { console.log(nodeName + "Starting config-node number " + node.number + " after " + timeToStart/1000 + " seconds ...")};
 			httpGet(config.ip, node.credentials.user, node.credentials.password, canAddr); // 1. http read of config node #1 request to CMI after 1 second
@@ -238,7 +245,8 @@ module.exports = function (RED) {
 			clearInterval(this.repeaterID);
 			if (debug) { console.log(nodeName + "repeater stopped") };
 		}
-		// console.log("finished stopping repeater");
+		//console.log("finished stopping repeater");
+		numberOfConfigNodes--; //decrease number of the used Config Nodes to start counting form 0 after a new Deployment
 	}; //cmiConfigNode.prototype.close
 
 };

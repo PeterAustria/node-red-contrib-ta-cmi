@@ -26,7 +26,7 @@ module.exports = function (RED) {
 			var day = date.getUTCDate();
 			var month = date.getUTCMonth() + 1; // month as a number 0-11, so add 1
 			var year = date.getUTCFullYear();
-			} else { // no Parameter provided, so take system-time (not in UTC)
+		} else { // no Parameter provided, so take system-time (not in UTC)
 			var date = new Date()
 			var hour = date.getHours();
 			var minute = date.getMinutes();
@@ -34,7 +34,7 @@ module.exports = function (RED) {
 			var day = date.getDate();
 			var month = date.getMonth() + 1; // month as a number 0-11, so add 1
 			var year = date.getFullYear();
-			};
+		};
 		if (hour < 10) { hour = '0' + hour; }
 		if (minute < 10) { minute = '0' + minute; }
 		if (second < 10) { second = '0' + second; }
@@ -45,7 +45,7 @@ module.exports = function (RED) {
 		} else {
 			return (hour + ':' + minute + ':' + second);
 		}
-	} // function dateTime(ts);
+	} // function dateTime(ts, withDate);
 
 	function cmiGetNode(config) {
 
@@ -94,11 +94,12 @@ module.exports = function (RED) {
 						let dataItem = dataList.filter(function(item) {
 							return item.Number == config.item
 						})[0];
+						let cmits = msg.data.Header.Timestamp * 1000; //"* 1000": because it is a Unix timestamp (in sec) and not a JS timestamp (in ms)"
 						newmsg.payload = dataItem.Value.Value;
 						newmsg.unit = cmiUnits[dataItem.Value.Unit];
 						newmsg.topic = config.name;
+						newmsg.timestamp = cmits;
 
-						let cmits = msg.data.Header.Timestamp * 1000; //"* 1000": because it is a Unix timestamp (in sec) and not a JS timestamp (in ms)"
 						if (newmsg.unit == 'AUS/EIN') { // Replace "AUS/EIN" with "OFF", "AUS", ... or "ON", "EIN", ...
 							if (newmsg.payload == 0) { newmsg.unit = RED._("cmi.units.offon.off") } else { newmsg.unit = RED._("cmi.units.offon.on") };
 						}
