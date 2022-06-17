@@ -125,11 +125,15 @@ This node is autodetecting the langeuage of your Node-RED installation. Currentl
 - A problem was fixed that the time before the node reads the first value from the C.M.I. increased with every deployment. This probem was firest seen in Version 0.1.10.
 
 #### 0.1.13 Added package information and package requirements regarding the Node-RED scorecard
-This is only a cosmetic update and not a functional update. It brings NO benefit and there is no need to update to this version! In this release I am also testing a new version of async, which can cause problems (see below).
+This is only a cosmetic update and not a functional update. It brings NO benefit and there is no need to update to this version! In this release I am also testing a new version of async, which can cause problems (see also 0.1.14).
 - Added supported Node-RED version (>=2.0.0) in package.json.
 - Added required Node.js version (>=12.0.0) in package.json.
 - The example code embedded in the README.MD is now also available as a json file in the example folder.
+
+#### 0.1.14 No version a async a pre-requisite
+In this release I am also testing a new version of async, which can cause problems (see also 0.1.14).
 - Previously version 2.6.1 of async was used as a dependency for this node. For test purposes, this will be replaced by version 3.2.4. Required version is now (>=3.0.0).
+
 If you have problems with this version, please downgrade to version 0.1.12 of this node.
 
 ## FAQ
