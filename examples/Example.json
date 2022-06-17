@@ -1,0 +1,278 @@
+[
+    {
+        "id": "8ca1c094.c35c68",
+        "type": "cmi in",
+        "z": "7ef2298e.f66cf",
+        "cmi": "244863cc.935f84",
+        "name": "Feuchte Keller",
+        "item": "23",
+        "source": "0",
+        "timestamp": "1",
+        "skip": "0",
+        "severity": "0",
+        "x": 180,
+        "y": 120,
+        "wires": [
+            [
+                "30c4ce5f.62087a",
+                "88b49ced.a1c3e"
+            ]
+        ]
+    },
+    {
+        "id": "261f918e.49207e",
+        "type": "cmi in",
+        "z": "7ef2298e.f66cf",
+        "cmi": "244863cc.935f84",
+        "name": "Feuchte Garage",
+        "item": "24",
+        "source": "0",
+        "timestamp": "1",
+        "skip": "0",
+        "severity": "0",
+        "x": 180,
+        "y": 180,
+        "wires": [
+            [
+                "2f87374f.367ba",
+                "88b49ced.a1c3e"
+            ]
+        ]
+    },
+    {
+        "id": "10312ce.c52ab53",
+        "type": "cmi in",
+        "z": "7ef2298e.f66cf",
+        "cmi": "244863cc.935f84",
+        "name": "Ventilator EIN/AUS",
+        "item": "21",
+        "source": "1",
+        "timestamp": "1",
+        "skip": "0",
+        "severity": "0",
+        "x": 190,
+        "y": 260,
+        "wires": [
+            [
+                "2fcc655c.f0ac02"
+            ]
+        ]
+    },
+    {
+        "id": "1208a86d.6bd66",
+        "type": "cmi in",
+        "z": "7ef2298e.f66cf",
+        "cmi": "244863cc.935f84",
+        "name": "Entfeuchtung EIN/AUS",
+        "item": "22",
+        "source": "1",
+        "timestamp": "1",
+        "skip": "0",
+        "severity": "0",
+        "x": 200,
+        "y": 320,
+        "wires": [
+            [
+                "573c0851.6ffff"
+            ]
+        ]
+    },
+    {
+        "id": "88b49ced.a1c3e",
+        "type": "ui_chart",
+        "z": "7ef2298e.f66cf",
+        "name": "Feuchte Keller/Garage",
+        "group": "88a17a33.f3f398",
+        "order": 1,
+        "width": "10",
+        "height": "6",
+        "label": "",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "40",
+        "ymax": "",
+        "removeOlder": "24",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#097479",
+            "#aec7e8",
+            "#ff810f",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 610,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "30c4ce5f.62087a",
+        "type": "ui_gauge",
+        "z": "7ef2298e.f66cf",
+        "name": "Feuchte Keller",
+        "group": "88a17a33.f3f398",
+        "order": 2,
+        "width": "2",
+        "height": "2",
+        "gtype": "gage",
+        "title": "Keller",
+        "label": "%rF",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "100",
+        "colors": [
+            "#ff0000",
+            "#097479",
+            "#ff0000"
+        ],
+        "seg1": "50",
+        "seg2": "75",
+        "x": 580,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "2f87374f.367ba",
+        "type": "ui_gauge",
+        "z": "7ef2298e.f66cf",
+        "name": "Feuchte Garage",
+        "group": "88a17a33.f3f398",
+        "order": 3,
+        "width": "2",
+        "height": "2",
+        "gtype": "gage",
+        "title": "Garage",
+        "label": "%rF",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "100",
+        "colors": [
+            "#ff0000",
+            "#097479",
+            "#ff0000"
+        ],
+        "seg1": "50",
+        "seg2": "75",
+        "x": 590,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "2fcc655c.f0ac02",
+        "type": "change",
+        "z": "7ef2298e.f66cf",
+        "name": "0/1",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "1",
+                "fromt": "num",
+                "to": "49",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "0",
+                "fromt": "num",
+                "to": "45",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 260,
+        "wires": [
+            [
+                "88b49ced.a1c3e"
+            ]
+        ]
+    },
+    {
+        "id": "573c0851.6ffff",
+        "type": "change",
+        "z": "7ef2298e.f66cf",
+        "name": "0/1",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "1",
+                "fromt": "num",
+                "to": "44",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "0",
+                "fromt": "num",
+                "to": "40",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 320,
+        "wires": [
+            [
+                "88b49ced.a1c3e"
+            ]
+        ]
+    },
+    {
+        "id": "244863cc.935f84",
+        "type": "cmi config",
+        "description": "TA C.M.I.",
+        "ip": "192.168.1.8",
+        "canNode": "10",
+        "interval": "1"
+    },
+    {
+        "id": "88a17a33.f3f398",
+        "type": "ui_group",
+        "name": "Entfeuchtung Keller",
+        "tab": "18886b9.a624594",
+        "order": 9,
+        "disp": true,
+        "width": "12",
+        "collapse": true
+    },
+    {
+        "id": "18886b9.a624594",
+        "type": "ui_tab",
+        "name": "Keller / Garage",
+        "icon": "exposure_neg_1",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    }
+]

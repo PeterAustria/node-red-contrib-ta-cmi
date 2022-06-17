@@ -124,6 +124,14 @@ This node is autodetecting the langeuage of your Node-RED installation. Currentl
 - An additional field was added in the output of the node, which contains the system time when the message was created. This uses the system time of the C.M.I. from which the data was read, not the time of the NodeRed installation.
 - A problem was fixed that the time before the node reads the first value from the C.M.I. increased with every deployment. This probem was firest seen in Version 0.1.10.
 
+#### 0.1.13 Added package information and package requirements regarding the Node-RED scorecard
+This is only a cosmetic update and not a functional update. It brings NO benefit and there is no need to update to this version! In this release I am also testing a new version of async, which can cause problems (see below).
+- Added supported Node-RED version (>=2.0.0) in package.json.
+- Added required Node.js version (>=12.0.0) in package.json.
+- The example code embedded in the README.MD is now also available as a json file in the example folder.
+- Previously version 2.6.1 of async was used as a dependency for this node. For test purposes, this will be replaced by version 3.2.4. Required version is now (>=3.0.0).
+If you have problems with this version, please downgrade to version 0.1.12 of this node.
+
 ## FAQ
 
 #### After redeploying, the node desplays `too many requests to C.M.I. (max 1 per min allowed)`.
