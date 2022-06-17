@@ -1,10 +1,10 @@
 {
   "name": "node-red-contrib-ta-cmi",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "private": false,
   "description": "A node that reads values from a C.M.I. from Technische Alternative RT GmbH.",
   "dependencies": {
-    "async": "^3.0.0"
+    "async": "^2.6.1"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,7 @@
   },
   "license": "MIT",
   "node-red": {
-    "version": ">=2.0.0",
+    "version": ">=1.2.0",
     "nodes": {
       "ta-cmi-get": "cmi-get.js",
       "ta-cmi-config": "cmi-config.js"

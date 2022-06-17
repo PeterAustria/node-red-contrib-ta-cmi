@@ -136,6 +136,13 @@ In this release I am also testing a new version of async, which can cause proble
 
 If you have problems with this version, please downgrade to version 0.1.12 of this node.
 
+#### 0.1.15 Support for earlier version of Node-RED
+- Removed version check for Node-RED to be >= 2.0.0 again and replaced it with >= 1.2.0. The reason is, that some users have [RedMatic](https://github.com/rdmtc/RedMatic#readme) installed. This is a combination of [Homematic](https://www.eq-3.de/produkte/homematic.html) and Node-RED as well as several software components. These can be easily installed as an addon on a Homematic CCU3 or RasperryMatic via the WebUI. However, this software package currently still contains Node-RED in [version 1.2.9](https://github.com/rdmtc/RedMatic/releases/tag/v7.2.1). So that this node can also run under RedMatic, the minimum requirement for **Node-RED** has been changed to **version >1.2.0**.
+- Version 3.2.4 of async works but for avoiding other conflicts the dependency was again downgraded to **async Version 2.6.1**.
+- Required minimum for **Node.js** is **version 12.0.0**.
+
+If the 0.1.15 version of this node proves to be stable, it will be moved from beta to a major release.
+
 ## FAQ
 
 #### After redeploying, the node desplays `too many requests to C.M.I. (max 1 per min allowed)`.
